@@ -345,92 +345,110 @@
  * Handles the click event on the simple analysis button.
  * This version triggers an automatic file download.
  */
-        async function handleSimpleAnalysisClick() {
-            setSimpleLoadingState(true);
+        document.getElementById('projectForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // --- SKILLS VALIDATION ---
+    if (skillsSet.size === 0) {
+        showError('Please add at least one required skill.');
+        document.getElementById('skillsInput').focus();
+        return;
+    }
+    // --- End skills validation ---
 
-            try {
-                // 1. Call your n8n webhook
-                const response = await fetch(QUICK_ANALYSIS_WEBHOOK_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        trigger: 'hr_dashboard_analysis_v1',
-                        timestamp: new Date().toISOString()
-                    })
-                });
+    const formData = {
+        project_name: document.getElementById('projectName').value,
+        project_type: document.getElementById('projectType').value,
+        duration_months: parseInt(document.getElementById('duration').value),
+        complexity: document.getElementById('complexity').value,
+        start_date: document.getElementById('startDate').value,
+        skills: Array.from(skillsSet),
+        trigger: 'detailed_forecast_v1'
+    };
 
-                if (!response.ok) {
-                    throw new Error(`Webhook request failed with status: ${response.status}`);
-                }
+    // Show loading
+    document.getElementById('formContainer').style.display = 'none';
+    document.getElementById('loadingContainer').style.display = 'block';
+    document.getElementById('errorMessage').style.display = 'none';
+    
+    const loadingInterval = animateLoadingSteps();
 
-                // 2. Get the JSON response from the webhook
-                const result = await response.json();
-                
-                // 3. Validate the response
-                if (result.pdf_url && result.pdf_url.startsWith('http')) {
-                    
-                    // Show a "preparing download" message
-                    simpleSuccessMessage.innerHTML = '✅ Analysis Complete! Preparing your download...';
-                    simpleSuccessMessage.classList.remove('hidden');
-                    simpleButtonText.textContent = 'Downloading...';
+    try {
+        // --- THIS IS THE LIVE WEBHOOK CALL ---
+        const response = await fetch(DETAILED_FORM_WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        });
+        // --- END WEBHOOK CALL ---
 
-                    // 4. Fetch the PDF file itself from the URL
-                    const pdfResponse = await fetch(result.pdf_url);
-                    if (!pdfResponse.ok) {
-                        throw new Error('Failed to fetch the PDF file.');
-                    }
-                    
-                    // 5. Get the file data as a Blob
-                    const blob = await pdfResponse.blob();
-                    
-                    // 6. Create a temporary URL for the Blob
-                    const blobUrl = URL.createObjectURL(blob);
-                    
-                    // 7. Create a temporary link to trigger the download
-                    const link = document.createElement('a');
-                    link.href = blobUrl;
-                    
-                    // 8. Set the file name for the download pop-up
-                    // (This uses the "pdf_name" you added in Step 1)
-                    link.download = result.pdf_name || 'Workforce_Report.pdf'; 
-                    
-                    // 9. Trigger the download pop-up (no pop-up blocker)
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    
-                    // 10. Clean up the Blob URL
-                    URL.revokeObjectURL(blobUrl);
+        clearInterval(loadingInterval); // Stop loading animation *after* fetch
+        document.getElementById('loadingContainer').style.display = 'none';
 
-                    // Update UI to show success
-                    simpleSuccessMessage.innerHTML = '✅ Download Started!';
-                    simpleButtonText.textContent = 'Analysis Complete';
-                    setSimpleLoadingState(false);
-                        
-                } else {
-                    // Invalid URL - treat as error
-                    throw new Error('Invalid PDF URL or name received from server');
-                }
-
-            } catch (error) {
-                // ERROR: Show error message
-                console.error('Error triggering simple webhook:', error);
-                
-                simpleErrorMessage.textContent = 'Failed to complete analysis. Please try again or contact support.';
-                simpleErrorMessage.classList.remove('hidden');
-                
-                // Reset button state
-                simpleButtonText.textContent = 'Start Quick Analysis';
-                setSimpleLoadingState(false);
-
-            } finally {
-                // Clean up UI elements
-                simpleSpinner.classList.add('hidden');
-                if (simpleButtonIcon) {
-                    simpleButtonIcon.classList.remove('hidden');
-                }
-            }
+        if (!response.ok) {
+            // Handle HTTP errors (e.g., 404, 500)
+            throw new Error(`Webhook request failed with status: ${response.status}`);
         }
+
+        const result = await response.json();
+        
+        // --- NEW LOGIC: Check for PDF URL, not executive_summary ---
+        if (result.pdf_url && result.pdf_url.startsWith('http')) {
+            
+            // --- START PDF DOWNLOAD LOGIC ---
+            // Fetch the PDF file itself
+            const pdfResponse = await fetch(result.pdf_url);
+            if (!pdfResponse.ok) {
+                throw new Error('Failed to fetch the PDF file.');
+            }
+            
+            // Get the file data as a Blob
+            const blob = await pdfResponse.blob();
+            
+            // Create a temporary URL for the Blob
+            const blobUrl = URL.createObjectURL(blob);
+            
+            // Create a temporary link to trigger the download
+            const link = document.createElement('a');
+            link.href = blobUrl;
+            
+            // Set the file name (using the name from n8n)
+            link.download = result.pdf_name || 'Detailed_Forecast.pdf'; 
+            
+            // Trigger the download pop-up
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Clean up the Blob URL
+            URL.revokeObjectURL(blobUrl);
+            // --- END PDF DOWNLOAD LOGIC ---
+
+            // Success! Reset the form.
+            resetForm();
+
+        } else {
+            // Handle cases where API returns 200 OK but data is not as expected
+            console.error("API response was successful but data is invalid or missing.", result);
+            throw new Error("Received an invalid response from the server. Please try again.");
+        }
+
+    } catch (error) {
+        console.error('Error during fetch operation:', error);
+        
+        clearInterval(loadingInterval);
+        document.getElementById('loadingContainer').style.display = 'none';
+        
+        // Display the error in the form's error message area
+        showError(error.message || "An unknown error occurred. Please check your connection and try again.");
+        
+        // Show the form again so the user can see the error
+        document.getElementById('formContainer').style.display = 'block';
+        
+        // Scroll to the error message
+        document.getElementById('errorMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+});
         /**
          * Toggles the UI elements for the simple button.
          * @param {boolean} isLoading - True if setting to loading state, false for idle.
@@ -461,7 +479,7 @@
         // --- Webhook Configuration ---
         // CORRECTED: Separate URLs for each button
         const QUICK_ANALYSIS_WEBHOOK_URL = '/api/quick-analysis';
-        const DETAILED_FORM_WEBHOOK_URL = 'https://n8n.solutionspace.in/webhook/14d07caa-9a4e-4226-96aa-b12623c618bf';
+        const DETAILED_FORM_WEBHOOK_URL = '/api/detailed-form';
 
 
         // Simulate loading steps
@@ -493,109 +511,6 @@
         }
 
         document.getElementById('projectForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            // --- SKILLS VALIDATION ---
-            if (skillsSet.size === 0) {
-                showError('Please add at least one required skill.');
-                document.getElementById('skillsInput').focus();
-                return;
-            }
-            // --- End skills validation ---
-
-            const formData = {
-                project_name: document.getElementById('projectName').value,
-                project_type: document.getElementById('projectType').value,
-                duration_months: parseInt(document.getElementById('duration').value),
-                complexity: document.getElementById('complexity').value,
-                start_date: document.getElementById('startDate').value,
-                skills: Array.from(skillsSet),
-                trigger: 'detailed_forecast_v1'
-            };
-
-            // Show loading
-            document.getElementById('formContainer').style.display = 'none';
-            document.getElementById('loadingContainer').style.display = 'block';
-            document.getElementById('errorMessage').style.display = 'none';
-            
-            const loadingInterval = animateLoadingSteps();
-
-            try {
-                // --- THIS IS THE LIVE WEBHOOK CALL ---
-                const response = await fetch(DETAILED_FORM_WEBHOOK_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
-                });
-                // --- END WEBHOOK CALL ---
-
-                clearInterval(loadingInterval); // Stop loading animation *after* fetch
-                document.getElementById('loadingContainer').style.display = 'none';
-
-                if (!response.ok) {
-                    // Handle HTTP errors (e.g., 404, 500)
-                    throw new Error(`Webhook request failed with status: ${response.status}`);
-                }
-
-                const result = await response.json();
-                
-                // --- NEW LOGIC: Check for PDF URL, not executive_summary ---
-                if (result.pdf_url && result.pdf_url.startsWith('http')) {
-                    
-                    // --- START PDF DOWNLOAD LOGIC ---
-                    // Fetch the PDF file itself
-                    const pdfResponse = await fetch(result.pdf_url);
-                    if (!pdfResponse.ok) {
-                        throw new Error('Failed to fetch the PDF file.');
-                    }
-                    
-                    // Get the file data as a Blob
-                    const blob = await pdfResponse.blob();
-                    
-                    // Create a temporary URL for the Blob
-                    const blobUrl = URL.createObjectURL(blob);
-                    
-                    // Create a temporary link to trigger the download
-                    const link = document.createElement('a');
-                    link.href = blobUrl;
-                    
-                    // Set the file name (using the name from n8n)
-                    link.download = result.pdf_name || 'Detailed_Forecast.pdf'; 
-                    
-                    // Trigger the download pop-up
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    
-                    // Clean up the Blob URL
-                    URL.revokeObjectURL(blobUrl);
-                    // --- END PDF DOWNLOAD LOGIC ---
-
-                    // Success! Reset the form.
-                    resetForm();
-
-                } else {
-                    // Handle cases where API returns 200 OK but data is not as expected
-                    console.error("API response was successful but data is invalid or missing.", result);
-                    throw new Error("Received an invalid response from the server. Please try again.");
-                }
-
-            } catch (error) {
-                console.error('Error during fetch operation:', error);
-                
-                clearInterval(loadingInterval);
-                document.getElementById('loadingContainer').style.display = 'none';
-                
-                // Display the error in the form's error message area
-                showError(error.message || "An unknown error occurred. Please check your connection and try again.");
-                
-                // Show the form again so the user can see the error
-                document.getElementById('formContainer').style.display = 'block';
-                
-                // Scroll to the error message
-                document.getElementById('errorMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        });
             e.preventDefault();
             
             // --- NEW: SKILLS VALIDATION ---
@@ -645,7 +560,7 @@
                 const result = await response.json();
                 
                 // Check for a valid successful response from the n8n flow
-                if (result.status === 'success' && result.PDF_URL) {
+                if (result.status === 'success' && result.executive_summary) {
                     displayResults(result);
                 } else {
                     // Handle cases where API returns 200 OK but data is not as expected
