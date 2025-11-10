@@ -341,10 +341,15 @@
 /**
          * Handles the click event on the simple analysis button.
          */
+        /**
+ * Handles the click event on the simple analysis button.
+ * This version triggers an automatic file download.
+ */
         async function handleSimpleAnalysisClick() {
             setSimpleLoadingState(true);
 
             try {
+                // 1. Call your n8n webhook
                 const response = await fetch(QUICK_ANALYSIS_WEBHOOK_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -358,34 +363,57 @@
                     throw new Error(`Webhook request failed with status: ${response.status}`);
                 }
 
+                // 2. Get the JSON response from the webhook
                 const result = await response.json();
                 
-                // Validate PDF URL
-                if (result.pdf_url && 
-                    result.pdf_url.startsWith('http') && 
-                    !result.pdf_url.includes('{{')) {
+                // 3. Validate the response
+                if (result.pdf_url && result.pdf_url.startsWith('http')) {
                     
-                    // ✅ SUCCESS: Show success message
-                    simpleSuccessMessage.innerHTML = 
-                        '✅ Analysis Complete!<br/>' +
-                        '<span class="font-semibold text-indigo-300">Your comprehensive workforce report is ready.</span><br/>' +
-                        '<a href="' + result.pdf_url + '" target="_blank" class="inline-block mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-lg transition-all">' +
-                        '📄 Download Report PDF</a>';
+                    // Show a "preparing download" message
+                    simpleSuccessMessage.innerHTML = '✅ Analysis Complete! Preparing your download...';
                     simpleSuccessMessage.classList.remove('hidden');
+                    simpleButtonText.textContent = 'Downloading...';
+
+                    // 4. Fetch the PDF file itself from the URL
+                    const pdfResponse = await fetch(result.pdf_url);
+                    if (!pdfResponse.ok) {
+                        throw new Error('Failed to fetch the PDF file.');
+                    }
                     
-                    // Update button text
+                    // 5. Get the file data as a Blob
+                    const blob = await pdfResponse.blob();
+                    
+                    // 6. Create a temporary URL for the Blob
+                    const blobUrl = URL.createObjectURL(blob);
+                    
+                    // 7. Create a temporary link to trigger the download
+                    const link = document.createElement('a');
+                    link.href = blobUrl;
+                    
+                    // 8. Set the file name for the download pop-up
+                    // (This uses the "pdf_name" you added in Step 1)
+                    link.download = result.pdf_name || 'Workforce_Report.pdf'; 
+                    
+                    // 9. Trigger the download pop-up (no pop-up blocker)
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    // 10. Clean up the Blob URL
+                    URL.revokeObjectURL(blobUrl);
+
+                    // Update UI to show success
+                    simpleSuccessMessage.innerHTML = '✅ Download Started!';
                     simpleButtonText.textContent = 'Analysis Complete';
-                    
-                    // ✅ FIXED: Reset loading state on success
                     setSimpleLoadingState(false);
-                    
+                        
                 } else {
                     // Invalid URL - treat as error
-                    throw new Error('Invalid PDF URL received from server');
+                    throw new Error('Invalid PDF URL or name received from server');
                 }
 
             } catch (error) {
-                // ✅ ERROR: Show error message
+                // ERROR: Show error message
                 console.error('Error triggering simple webhook:', error);
                 
                 simpleErrorMessage.textContent = 'Failed to complete analysis. Please try again or contact support.';
@@ -396,7 +424,7 @@
                 setSimpleLoadingState(false);
 
             } finally {
-                // ✅ FIXED: Always clean up UI elements
+                // Clean up UI elements
                 simpleSpinner.classList.add('hidden');
                 if (simpleButtonIcon) {
                     simpleButtonIcon.classList.remove('hidden');
@@ -433,7 +461,7 @@
         // --- Webhook Configuration ---
         // CORRECTED: Separate URLs for each button
         const QUICK_ANALYSIS_WEBHOOK_URL = '/api/quick-analysis';
-        const DETAILED_FORM_WEBHOOK_URL = '/api/detailed-form';
+        const DETAILED_FORM_WEBHOOK_URL = 'https://n8n.solutionspace.in/webhook/14d07caa-9a4e-4226-96aa-b12623c618bf';
 
 
         // Simulate loading steps
@@ -514,7 +542,7 @@
                 const result = await response.json();
                 
                 // Check for a valid successful response from the n8n flow
-                if (result.status === 'success' && result.executive_summary) {
+                if (result.status === 'success' && result.pdf_url) {
                     displayResults(result);
                 } else {
                     // Handle cases where API returns 200 OK but data is not as expected
@@ -946,3 +974,7 @@
     </script>
 </body>
 </html>
+
+
+
+
