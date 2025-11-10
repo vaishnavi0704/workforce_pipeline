@@ -495,6 +495,109 @@
         document.getElementById('projectForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
+            // --- SKILLS VALIDATION ---
+            if (skillsSet.size === 0) {
+                showError('Please add at least one required skill.');
+                document.getElementById('skillsInput').focus();
+                return;
+            }
+            // --- End skills validation ---
+
+            const formData = {
+                project_name: document.getElementById('projectName').value,
+                project_type: document.getElementById('projectType').value,
+                duration_months: parseInt(document.getElementById('duration').value),
+                complexity: document.getElementById('complexity').value,
+                start_date: document.getElementById('startDate').value,
+                skills: Array.from(skillsSet),
+                trigger: 'detailed_forecast_v1'
+            };
+
+            // Show loading
+            document.getElementById('formContainer').style.display = 'none';
+            document.getElementById('loadingContainer').style.display = 'block';
+            document.getElementById('errorMessage').style.display = 'none';
+            
+            const loadingInterval = animateLoadingSteps();
+
+            try {
+                // --- THIS IS THE LIVE WEBHOOK CALL ---
+                const response = await fetch(DETAILED_FORM_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+                // --- END WEBHOOK CALL ---
+
+                clearInterval(loadingInterval); // Stop loading animation *after* fetch
+                document.getElementById('loadingContainer').style.display = 'none';
+
+                if (!response.ok) {
+                    // Handle HTTP errors (e.g., 404, 500)
+                    throw new Error(`Webhook request failed with status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                
+                // --- NEW LOGIC: Check for PDF URL, not executive_summary ---
+                if (result.pdf_url && result.pdf_url.startsWith('http')) {
+                    
+                    // --- START PDF DOWNLOAD LOGIC ---
+                    // Fetch the PDF file itself
+                    const pdfResponse = await fetch(result.pdf_url);
+                    if (!pdfResponse.ok) {
+                        throw new Error('Failed to fetch the PDF file.');
+                    }
+                    
+                    // Get the file data as a Blob
+                    const blob = await pdfResponse.blob();
+                    
+                    // Create a temporary URL for the Blob
+                    const blobUrl = URL.createObjectURL(blob);
+                    
+                    // Create a temporary link to trigger the download
+                    const link = document.createElement('a');
+                    link.href = blobUrl;
+                    
+                    // Set the file name (using the name from n8n)
+                    link.download = result.pdf_name || 'Detailed_Forecast.pdf'; 
+                    
+                    // Trigger the download pop-up
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    // Clean up the Blob URL
+                    URL.revokeObjectURL(blobUrl);
+                    // --- END PDF DOWNLOAD LOGIC ---
+
+                    // Success! Reset the form.
+                    resetForm();
+
+                } else {
+                    // Handle cases where API returns 200 OK but data is not as expected
+                    console.error("API response was successful but data is invalid or missing.", result);
+                    throw new Error("Received an invalid response from the server. Please try again.");
+                }
+
+            } catch (error) {
+                console.error('Error during fetch operation:', error);
+                
+                clearInterval(loadingInterval);
+                document.getElementById('loadingContainer').style.display = 'none';
+                
+                // Display the error in the form's error message area
+                showError(error.message || "An unknown error occurred. Please check your connection and try again.");
+                
+                // Show the form again so the user can see the error
+                document.getElementById('formContainer').style.display = 'block';
+                
+                // Scroll to the error message
+                document.getElementById('errorMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        });
+            e.preventDefault();
+            
             // --- NEW: SKILLS VALIDATION ---
             if (skillsSet.size === 0) {
                 showError('Please add at least one required skill.');
@@ -542,7 +645,7 @@
                 const result = await response.json();
                 
                 // Check for a valid successful response from the n8n flow
-                if (result.status === 'success' && result.pdf_url) {
+                if (result.status === 'success' && result.PDF_URL) {
                     displayResults(result);
                 } else {
                     // Handle cases where API returns 200 OK but data is not as expected
