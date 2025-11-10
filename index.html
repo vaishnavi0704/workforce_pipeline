@@ -295,56 +295,54 @@
     /**
      * Handles the click event for the "Start Quick Analysis" button.
      */
-    async function handleSimpleAnalysisClick() {
-        setSimpleLoadingState(true);
+            async function handleSimpleAnalysisClick() {
+            // 1. Set Loading State
+            setSimpleLoadingState(true);
 
-        try {
-            const response = await fetch(QUICK_ANALYSIS_WEBHOOK_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    trigger: 'hr_dashboard_analysis_v1',
-                    timestamp: new Date().toISOString()
-                })
-            });
+            try {
+                // 2. Call the Webhook with simple payload
+                // CORRECTED: Uses QUICK_ANALYSIS_WEBHOOK_URL
+                const response = await fetch(QUICK_ANALYSIS_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        trigger: 'hr_dashboard_analysis_v1',
+                        timestamp: new Date().toISOString()
+                    })
+                });
 
-            if (!response.ok) {
-                throw new Error(`Webhook request failed with status: ${response.status}`);
-            }
+                if (!response.ok) {
+                    throw new Error(`Webhook request failed with status: ${response.status}`);
+                }
 
-            const result = await response.json();
-            
-            // Check for both URL and Name
-            if (result.pdf_url && result.pdf_name && result.pdf_url.startsWith('http')) {
-                simpleSuccessMessage.innerHTML = '✅ Analysis Complete! Preparing your download...';
+                // 3. Show Success Message
+                simpleSuccessMessage.innerHTML = 'Analysis started! You will receive the report with:<br/>' +
+                    '<span class="font-semibold text-indigo-300">Pipeline Forecast, Attrition Risk & Hiring Market Trends</span>' +
+                    '<br/>via email in 5-10 minutes. Feel free to keep this page open.';
                 simpleSuccessMessage.classList.remove('hidden');
-                simpleButtonText.textContent = 'Downloading...';
+                
+                simpleButtonText.textContent = 'Analysis Started';
 
-                // Trigger the download
-                await triggerPDFDownload(result.pdf_url, result.pdf_name, 'Workforce_Report.pdf');
+            } catch (error) {
+                // 4. Show Error Message
+                console.error('Error triggering simple webhook:', error);
+                simpleErrorMessage.textContent = 'Failed to start analysis. Please try again or contact support.';
+                simpleErrorMessage.classList.remove('hidden');
+                
+                setSimpleLoadingState(false); 
+                simpleButtonText.textContent = 'Start Quick Analysis';
 
-                simpleSuccessMessage.innerHTML = '✅ Download Started!';
-                simpleButtonText.textContent = 'Analysis Complete';
-                setSimpleLoadingState(false);
-                    
-            } else {
-                console.error("Invalid response from simple analysis webhook:", result);
-                throw new Error('Invalid PDF data received from server');
-            }
-
-        } catch (error) {
-            console.error('Error triggering simple webhook:', error);
-            simpleErrorMessage.textContent = error.message || 'Failed to complete analysis. Please try again.';
-            simpleErrorMessage.classList.remove('hidden');
-            simpleButtonText.textContent = 'Start Quick Analysis';
-            setSimpleLoadingState(false);
-        } finally {
-            simpleSpinner.classList.add('hidden');
-            if (simpleButtonIcon) {
-                simpleButtonIcon.classList.remove('hidden');
+            } finally {
+                // 5. Hide spinner
+                if (!simpleErrorMessage.classList.contains('hidden')) {
+                   // Error already handled
+                } else {
+                    simpleSpinner.classList.add('hidden');
+                    if(simpleButtonIcon) simpleButtonIcon.classList.remove('hidden'); 
+                }
             }
         }
-    }
+
 
     /**
      * Toggles the UI state for the simple analysis button.
@@ -415,7 +413,7 @@
             const result = await response.json();
             
             // Check for both URL and Name
-            if (result.pdf_url && result.pdf_name && result.pdf_url.startsWith('http')) {
+            if (result.pdf_url && result.pdf_name && result.pdf_url.startsWith('https')) {
                 // Trigger the download
                 await triggerPDFDownload(result.pdf_url, result.pdf_name, 'Detailed_Forecast.pdf');
                 
