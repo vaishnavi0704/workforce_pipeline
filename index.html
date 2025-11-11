@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -61,8 +61,8 @@
         <div class="bg-gray-900/50 p-8 text-center border-b border-gray-700">
             <h1 class="text-3xl font-bold mb-2 text-white flex items-center justify-center gap-3">
                 <svg class="w-8 h-8 text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
                 </svg>
                 Dynamic Workforce Planning Agent
             </h1>
@@ -107,651 +107,7 @@
                     <span id="simple-button-text">Start Quick Analysis</span>
                 </button>
         
-                <div id="simple-message-container" class="mt-6 min-h-[4em]">
-                    <p id="simple-success-message" class="hidden text-green-400 font-medium text-base"></p>
-                    <p id="simple-error-message" class="hidden text-red-400 font-medium"></p>
-                </div>
-                
-                <hr class="border-t border-gray-600 my-4">
-                <p class="text-lg font-semibold text-gray-300">Or, fill out the form for a detailed project pipeline forecast:</p>
-            </div>
-            
-            <div class="bg-indigo-900/50 text-indigo-200 p-4 rounded-lg border border-indigo-700 mb-6 flex gap-3 items-start">
-                <svg class="w-6 h-6 text-indigo-300 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
-                </svg>
-                <p><strong>Predictive Analysis:</strong> This agent analyzes your project pipeline, historical attrition patterns, and current hiring market trends to provide proactive workforce recommendations.</p>
-            </div>
-
-            <form id="projectForm" class="grid grid-cols-1 md:grid-cols-2 gap-x-6">
-                <div>
-                    <div class="mb-6">
-                        <label for="projectName" class="block mb-2 text-sm font-medium text-gray-300">Project Name *</label>
-                        <input type="text" id="projectName" required placeholder="e.g., AI Chatbot Development" class="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-3">
-                    </div>
-
-                    <div class="mb-6">
-                        <label for="projectType" class="block mb-2 text-sm font-medium text-gray-300">Project Type *</label>
-                        <select id="projectType" required class="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-3">
-                            <option value="">Select project type</option>
-                            <option value="Software Development">Software Development</option>
-                            <option value="Consulting">Consulting</option>
-                            <option value="Data Analytics">Data Analytics</option>
-                            <option value="Infrastructure">Infrastructure</option>
-                            <option value="Marketing Campaign">Marketing Campaign</option>
-                            <option value="Digital Transformation">Digital Transformation</option>
-                        </select>
-                    </div>
-
-                    <div class="mb-6">
-                        <label for="skillsInput" class="block mb-2 text-sm font-medium text-gray-300">
-                            Required Skills * <span class="text-xs text-gray-400">(Type a skill and press Enter or Comma)</span>
-                        </label>
-                        <div class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus-within:ring-indigo-500 focus-within:border-indigo-500 p-3 flex flex-wrap items-center">
-                            <div id="skillsContainer" class="flex flex-wrap">
-                                </div>
-                            <input type="text" id="skillsInput" placeholder="e.g., Python, React, AWS..." class="bg-transparent flex-1 focus:outline-none min-w-[150px] p-1">
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="mb-6">
-                        <label for="complexity" class="block mb-2 text-sm font-medium text-gray-300">Project Complexity *</label>
-                        <select id="complexity" required class="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-3">
-                            <option value="">Select complexity</option>
-                            <option value="Low">Low - Standard implementation</option>
-                            <option value="Medium">Medium - Moderate challenges</option>
-                            <option value="High">High - Complex requirements</option>
-                            <option value="Critical">Critical - Mission critical system</option>
-                        </select>
-                    </div>
-
-                    <div class="mb-6">
-                        <label for="startDate" class="block mb-2 text-sm font-medium text-gray-300">Expected Start Date *</label>
-                        <input type="date" id="startDate" required class="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-3" placeholder="dd/mm/yyyy">
-                    </div>
-
-                    <div class="mb-6">
-                        <label for="duration" class="block mb-2 text-sm font-medium text-gray-300">Project Duration (months) *</label>
-                        <input type="number" id="duration" required min="1" max="36" placeholder="e.g., 8" class="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-3">
-                    </div>
-                </div>
-                
-                <div class="md:col-span-2">
-                    <div class="hidden bg-red-900/50 text-red-300 p-4 rounded-lg border border-red-700 my-4" id="errorMessage"></div>
-                </div>
-
-                <button type="submit" class="md:col-span-2 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-6 rounded-lg shadow-lg flex items-center justify-center gap-3 transition-all duration-300 ease-in-out disabled:bg-gray-500">
-                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v.01a6 6 0 0 1-5.84-7.38C3.91 10.12 7.15 6.45 12 6.45c4.85 0 8.09 3.67 8.09 7.92v.01Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 12H9.75M12 12H9.75M12 12V9.75M12 12V9.75M12 12h2.25M12 12h2.25M12 12v2.25M12 12v2.25M15 12C15 11.2 14.4 10.5 13.5 10.5C12.6 10.5 12 11.2 12 12C12 12.8 12.6 13.5 13.5 13.5C14.4 13.5 15 12.8 15 12Z" /></svg>
-    
-                    Generate AI-Powered Workforce Forecast
-                </button>
-            </form>
-        </div>
-
-        <div class="hidden p-8 sm:p-12 text-center" id="loadingContainer">
-            <div class="spinner w-16 h-16 mx-auto border-4 border-gray-600 border-t-indigo-500 rounded-full"></div>
-            <h3 class="text-2xl font-bold mt-6 mb-2 text-white">AI Agent Analyzing Your Workforce Needs...</h3>
-            <p class="text-gray-400 mb-8">This may take 15-30 seconds</p>
-            
-            <div class="max-w-md mx-auto space-y-3 text-left">
-                <div class="bg-gray-700 p-4 rounded-lg flex items-center gap-3 text-gray-400 transition-all duration-500" id="step1">
-                    <svg class="w-5 h-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h12M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-12a2.25 2.25 0 0 1-2.25-2.25V3m12.75 0v6.75a2.25 2.25 0 0 1-2.25 2.25H9m3.75 0v-6.75a2.25 2.25 0 0 0-2.25-2.25H9" /></svg>
-                    <span>Analyzing project pipeline forecast...</span>
-                </div>
-                <div class="bg-gray-700 p-4 rounded-lg flex items-center gap-3 text-gray-400 transition-all duration-500" id="step2">
-                    <svg class="w-5 h-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" /></svg>
-                    <span>Calculating attrition risks...</span>
-                </div>
-                <div class="bg-gray-700 p-4 rounded-lg flex items-center gap-3 text-gray-400 transition-all duration-500" id="step3">
-                    <svg class="w-5 h-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" /></svg>
-                    <span>Processing market hiring trends...</span>
-                </div>
-                <div class="bg-gray-700 p-4 rounded-lg flex items-center gap-3 text-gray-400 transition-all duration-500" id="step4">
-                    <svg class="w-5 h-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" /></svg>
-                    <span>Generating AI recommendations...</span>
-                </div>
-                <div class="bg-gray-700 p-4 rounded-lg flex items-center gap-3 text-gray-400 transition-all duration-500" id="step5">
-                    <svg class="w-5 h-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 9v.906a2.25 2.25 0 0 1-1.183 1.981l-6.478 3.488M2.25 9v.906c0 .94.55 1.767 1.376 2.094l6.22-3.341c.34-.182.73-.182 1.07 0l6.22 3.341c.826-.327 1.376-1.154 1.376-2.094V9M2.25 9h19.5M2.25 9a2.25 2.25 0 0 1-2.25-2.25V5.25A2.25 2.25 0 0 1 2.25 3h19.5A2.25 2.25 0 0 1 24 5.25v1.5A2.25 2.25 0 0 1 21.75 9Z" /></svg>
-                    <span>Preparing detailed report...</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="hidden p-4 sm:p-8 bg-gray-900" id="resultContainer">
-            <svg class="text-green-500 w-20 h-20 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-            </svg>
-            
-            <div id="riskBanner" class="mt-4"></div>
-            
-            <div class="bg-gray-800 rounded-xl shadow-lg p-6 sm:p-8 mb-6">
-                <div class="border-b-2 border-indigo-700 pb-4 mb-6 flex items-center gap-3">
-                    <svg class="w-7 h-7 text-indigo-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75c0-.231-.035-.454-.1-.664M6.75 7.5H4.875c-1.125 0-2.062.938-2.062 2.063v3.812c0 1.125.938 2.063 2.063 2.063h1.875m0-7.938h.008v.008H6.75V7.5Zm0 7.938h.008v.008H6.75v-7.938Z" /></svg>
-                    <h2 class="text-2xl font-bold text-indigo-300">Executive Summary</h2>
-                </div>
-                <div id="executiveSummary"></div>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6" id="metricsGrid"></div>
-            </div>
-
-            <div class="bg-gray-800 rounded-xl shadow-lg p-6 sm:p-8 mb-6">
-                <div class="border-b-2 border-indigo-700 pb-4 mb-6 flex items-center gap-3">
-                    <svg class="w-7 h-7 text-indigo-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h12M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-12a2.25 2.25 0 0 1-2.25-2.25V3m12.75 0v6.75a2.25 2.25 0 0 1-2.25 2.25H9m3.75 0v-6.75a2.25 2.25 0 0 0-2.25-2.25H9" /></svg>
-                    <h2 class="text-2xl font-bold text-indigo-300">6-Month Pipeline Forecast</h2>
-                </div>
-                <div id="pipelineForecast"></div>
-            </div>
-
-            <div class="bg-gray-800 rounded-xl shadow-lg p-6 sm:p-8 mb-6">
-                <div class="border-b-2 border-indigo-700 pb-4 mb-6 flex items-center gap-3">
-                    <svg class="w-7 h-7 text-indigo-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.008v.008H12v-.008Z" /></svg>
-                    <h2 class="text-2xl font-bold text-indigo-300">Critical Attrition Risks</h2>
-                </div>
-                <div id="attritionRisks"></div>
-            </div>
-
-            <div class="bg-gray-800 rounded-xl shadow-lg p-6 sm:p-8 mb-6">
-                <div class="border-b-2 border-indigo-700 pb-4 mb-6 flex items-center gap-3">
-                    <svg class="w-7 h-7 text-indigo-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.627 48.627 0 0 1 12 20.904a48.627 48.627 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.57 50.57 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" /></svg>
-                    <h2 class="text-2xl font-bold text-indigo-300">Strategic Upskilling Program</h2>
-                </div>
-                <div id="upskillList"></div>
-            </div>
-
-            <div class="bg-gray-800 rounded-xl shadow-lg p-6 sm:p-8 mb-6">
-                <div class="border-b-2 border-indigo-700 pb-4 mb-6 flex items-center gap-3">
-                    <svg class="w-7 h-7 text-indigo-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-3.741-5.584M14.25 18.72a3 3 0 0 1-3.741-5.584 9.094 9.094 0 0 1 3.741-.479m0 6.063a9.094 9.094 0 0 0-3.741.479 3 3 0 0 0 3.741 5.584m-3.741-5.584a9.094 9.094 0 0 1-3.741.479 3 3 0 0 1-3.741-5.584 9.094 9.094 0 0 1 3.741-.479m0 6.063a9.094 9.094 0 0 0 3.741.479 3 3 0 0 0-3.741 5.584m0-5.584a3 3 0 0 1 3.741 5.584 9.094 9.094 0 0 1-3.741.479M10.5 11.25a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M13.875 11.25a3.375 3.375 0 1 1 6.75 0 3.375 3.375 0 0 1-6.75 0Z" /></svg>
-                    <h2 class="text-2xl font-bold text-indigo-300">Proactive Hiring Plan</h2>
-                </div>
-                <div id="hiringList"></div>
-            </div>
-
-            <button class="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-all" onclick="resetForm()">
-                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" /></svg>
-                Start New Analysis
-            </button>
-        </div>
-    </div>
-
-    <script>
-    // --- WEBHOOK URLS ---
-    // !! IMPORTANT: Set these to your actual n8n webhook URLs !!
-    const QUICK_ANALYSIS_WEBHOOK_URL = '/api/quick-analysis';
-    const DETAILED_FORM_WEBHOOK_URL = '/api/detailed-form';
-
-    // --- SIMPLE DASHBOARD (FIRST BUTTON) ---
-    const simpleAnalysisButton = document.getElementById('simple-analysis-button');
-    const simpleButtonText = document.getElementById('simple-button-text');
-    const simpleButtonIcon = document.getElementById('simple-button-icon');
-    const simpleSpinner = document.getElementById('simple-spinner');
-    const simpleSuccessMessage = document.getElementById('simple-success-message');
-    const simpleErrorMessage = document.getElementById('simple-error-message');
-
-    if (simpleAnalysisButton) {
-        simpleAnalysisButton.addEventListener('click', handleSimpleAnalysisClick);
-    }
-
-    /**
-     * Handles the click event for the "Start Quick Analysis" button.
-     */
-            async function handleSimpleAnalysisClick() {
-            // 1. Set Loading State
-            setSimpleLoadingState(true);
-
-            try {
-                // 2. Call the Webhook with simple payload
-                // CORRECTED: Uses QUICK_ANALYSIS_WEBHOOK_URL
-                const response = await fetch(QUICK_ANALYSIS_WEBHOOK_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        trigger: 'hr_dashboard_analysis_v1',
-                        timestamp: new Date().toISOString()
-                    })
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Webhook request failed with status: ${response.status}`);
-                }
-
-                // 3. Show Success Message
-                simpleSuccessMessage.innerHTML = 'Analysis started! You will receive the report with:<br/>' +
-                    '<span class="font-semibold text-indigo-300">Pipeline Forecast, Attrition Risk & Hiring Market Trends</span>' +
-                    '<br/>via email in 5-10 minutes. Feel free to keep this page open.';
-                simpleSuccessMessage.classList.remove('hidden');
-                
-                simpleButtonText.textContent = 'Start Quick Analysis';
-
-            } catch (error) {
-                // 4. Show Error Message
-                console.error('Error triggering simple webhook:', error);
-                simpleErrorMessage.textContent = 'Failed to start analysis. Please try again or contact support.';
-                simpleErrorMessage.classList.remove('hidden');
-                
-                setSimpleLoadingState(false); 
-                simpleButtonText.textContent = 'Start Quick Analysis';
-
-            } finally {
-                // 5. Hide spinner
-                if (!simpleErrorMessage.classList.contains('hidden')) {
-                   // Error already handled
-                } else {
-                    simpleSpinner.classList.add('hidden');
-                    if(simpleButtonIcon) simpleButtonIcon.classList.remove('hidden'); 
-                }
-            }
-        }
-
-
-    /**
-     * Toggles the UI state for the simple analysis button.
-     */
-    function setSimpleLoadingState(isLoading) {
-        if (!simpleAnalysisButton) return;
-        
-        simpleAnalysisButton.disabled = isLoading;
-        simpleSuccessMessage.classList.add('hidden');
-        simpleErrorMessage.classList.add('hidden');
-
-        if (isLoading) {
-            if(simpleButtonIcon) simpleButtonIcon.classList.add('hidden');
-            simpleSpinner.classList.remove('hidden');
-            simpleButtonText.textContent = 'Analysis in Progress...';
-        } else {
-            if(simpleButtonIcon) simpleButtonIcon.classList.remove('hidden');
-            simpleSpinner.classList.add('hidden');
-        }
-    }
-
-    // --- DETAILED FORM (SECOND BUTTON) ---
-    document.getElementById('startDate').min = new Date().toISOString().split('T')[0];
-
-    /**
-     * Handles the submit event for the "Generate AI-Powered" (detailed) form.
-     */
-    document.getElementById('projectForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        if (skillsSet.size === 0) {
-            showError('Please add at least one required skill.');
-            document.getElementById('skillsInput').focus();
-            return;
-        }
-
-        const formData = {
-            project_name: document.getElementById('projectName').value,
-            project_type: document.getElementById('projectType').value,
-            duration_months: parseInt(document.getElementById('duration').value),
-            complexity: document.getElementById('complexity').value,
-            start_date: document.getElementById('startDate').value,
-            skills: Array.from(skillsSet),
-            trigger: 'detailed_forecast_v1'
-        };
-
-        // Show loading screen
-        document.getElementById('formContainer').style.display = 'none';
-        document.getElementById('loadingContainer').style.display = 'block';
-        document.getElementById('errorMessage').style.display = 'none';
-        
-        const loadingInterval = animateLoadingSteps();
-
-        try {
-            const response = await fetch(DETAILED_FORM_WEBHOOK_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
-            });
-
-            clearInterval(loadingInterval);
-            document.getElementById('loadingContainer').style.display = 'none';
-
-            if (!response.ok) {
-                    throw new Error(`Webhook request failed with status: ${response.status}`);
-                }
-
-                // 3. Show Success Message
-                simpleSuccessMessage.innerHTML = 'Analysis started! You will receive the report with:<br/>' +
-                    '<span class="font-semibold text-indigo-300">Pipeline Forecast, Attrition Risk & Hiring Market Trends</span>' +
-                    '<br/>via email in 5-10 minutes. Feel free to keep this page open.';
-                simpleSuccessMessage.classList.remove('hidden');
-                
-                simpleButtonText.textContent = 'Generate AI-Powered Workforce Forecast';
-
-            } catch (error) {
-                // 4. Show Error Message
-                console.error('Error triggering simple webhook:', error);
-                simpleErrorMessage.textContent = 'Failed to start analysis. Please try again or contact support.';
-                simpleErrorMessage.classList.remove('hidden');
-                
-                setSimpleLoadingState(false); 
-                simpleButtonText.textContent = 'Generate AI-Powered Workforce Forecast';
-
-            } finally {
-                // 5. Hide spinner
-                if (!simpleErrorMessage.classList.contains('hidden')) {
-                   // Error already handled
-                } else {
-                    simpleSpinner.classList.add('hidden');
-                    if(simpleButtonIcon) simpleButtonIcon.classList.remove('hidden'); 
-                }
-            }
-        }
-    );
-
-
-    // --- UTILITY & ANIMATION FUNCTIONS ---
-
-    function showError(message) {
-        const errorDiv = document.getElementById('errorMessage');
-        errorDiv.textContent = message;
-        errorDiv.style.display = 'block';
-    }
-
-    function resetForm() {
-        document.getElementById('projectForm').reset();
-        skillsSet.clear();
-        document.getElementById('skillsContainer').innerHTML = '';
-        
-        // Hide results/loading and show the form
-        document.getElementById('resultContainer').style.display = 'none';
-        document.getElementById('loadingContainer').style.display = 'none';
-        document.getElementById('formContainer').style.display = 'block';
-        document.getElementById('errorMessage').style.display = 'none';
-        
-        // Reset loading steps visual
-        ['step1', 'step2', 'step3', 'step4', 'step5'].forEach(step => {
-            const el = document.getElementById(step);
-            el.classList.remove('scale-105', 'border', 'border-indigo-700', 'bg-indigo-900/50', '!text-white', '!text-green-300', 'opacity-70');
-        });
-        
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function animateLoadingSteps() {
-        const steps = ['step1', 'step2', 'step3', 'step4', 'step5'];
-        let currentStep = 0;
-        
-        const interval = setInterval(() => {
-            if (currentStep > 0) {
-                const prevStep = document.getElementById(steps[currentStep - 1]);
-                if (prevStep) {
-                    prevStep.classList.remove('scale-105', 'border-indigo-700', 'bg-indigo-900/50', '!text-white');
-                    prevStep.classList.add('!text-green-300', 'opacity-70');
-                }
-            }
-            
-            if (currentStep < steps.length) {
-                const currentStepEl = document.getElementById(steps[currentStep]);
-                if (currentStepEl) {
-                    currentStepEl.classList.add('scale-105', 'border', 'border-indigo-700', 'bg-indigo-900/50', '!text-white');
-                }
-                currentStep++;
-            } else {
-                clearInterval(interval);
-            }
-        }, 3000); // This timing is for visual effect
-        
-        return interval;
-    }
-
-    // --- SKILLS TAG SCRIPT ---
-    const skillsSet = new Set();
-    const skillsContainer = document.getElementById('skillsContainer');
-    const skillsInput = document.getElementById('skillsInput');
-
-    skillsInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ',') {
-            e.preventDefault();
-            const skill = skillsInput.value.trim();
-            if (skill) {
-                addSkill(skill);
-                skillsInput.value = '';
-            }
-        }
-    });
-
-    function addSkill(skill) {
-        const skillName = skill.toLowerCase();
-        if (skillsSet.has(skillName)) return;
-        
-        skillsSet.add(skillName);
-        const tag = document.createElement('div');
-        tag.className = 'skill-tag';
-        tag.textContent = skill;
-        
-        const removeBtn = document.createElement('button');
-        removeBtn.innerHTML = '&times;';
-        removeBtn.onclick = function() {
-            skillsSet.delete(skillName);
-            skillsContainer.removeChild(tag);
-        };
-        
-        tag.appendChild(removeBtn);
-        skillsContainer.appendChild(tag);
-    }
-    
-    // --- INTERACTIVE CANVAS BACKGROUND SCRIPT ---
-    const canvas = document.getElementById('interactive-bg');
-    const ctx = canvas.getContext('2d');
-    let particlesArray = [];
-    let mouse = { x: null, y: null, radius: 100 };
-
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    window.addEventListener('mousemove', (event) => {
-        mouse.x = event.x;
-        mouse.y = event.y;
-    });
-    window.addEventListener('mouseout', () => {
-        mouse.x = null;
-        mouse.y = null;
-    });
-
-    class Particle {
-        constructor(x, y, size, color) {
-            this.x = x;
-            this.y = y;
-            this.size = size;
-            this.color = color;
-            this.baseX = this.x;
-            this.baseY = this.y;
-            this.density = (Math.random() * 30) + 1;
-        }
-        draw() {
-            ctx.fillStyle = this.color;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.closePath();
-            ctx.fill();
-        }
-        update() {
-            let dx = mouse.x - this.x;
-            let dy = mouse.y - this.y;
-            let distance = Math.sqrt(dx * dx + dy * dy);
-            let forceDirectionX = dx / distance;
-            let forceDirectionY = dy / distance;
-            let maxDistance = mouse.radius;
-            let force = (maxDistance - distance) / maxDistance;
-            let directionX = 0;
-            let directionY = 0;
-
-            if (distance < mouse.radius) {
-                directionX = -forceDirectionX * force * this.density;
-                directionY = -forceDirectionY * force * this.density;
-            } else {
-                if (this.x !== this.baseX) {
-                    let dx_base = this.x - this.baseX;
-                    directionX = -dx_base / 20;
-                }
-                if (this.y !== this.baseY) {
-                    let dy_base = this.y - this.baseY;
-                    directionY = -dy_base / 20;
-                }
-            }
-            this.x += directionX;
-            this.y += directionY;
-        }
-    }
-
-    function initParticles() {
-        particlesArray = [];
-        let numberOfParticles = (canvas.width * canvas.height) / 9000;
-        for (let i = 0; i < numberOfParticles; i++) {
-            let size = (Math.random() * 1.5) + 1;
-            let x = Math.random() * canvas.width;
-            let y = Math.random() * canvas.height;
-            let color = 'rgba(165, 180, 252, 0.5)'; // indigo-300 with opacity
-            particlesArray.push(new Particle(x, y, size, color));
-        }
-    }
-
-    function animateParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let i = 0; i < particlesArray.length; i++) {
-            particlesArray[i].update();
-            particlesArray[i].draw();
-        }
-        requestAnimationFrame(animateParticles);
-    }
-
-    initParticles();
-    animateParticles();
-
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-            resizeCanvas();
-            initParticles();
-        }, 100);
-    });
-</script>
-</body>
-</html>
-
-
-
- -->
-
-
-
-
- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Workforce Planning Agent - AI-Powered Forecasting</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Use the Inter font, which is clean and professional */
-        body {
-            font-family: 'Inter', sans-serif;
-            /* Prevent scrolling caused by canvas */
-            overflow-x: hidden;
-        }
-        /* Simple spinner animation */
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        .spinner {
-            animation: spin 1s linear infinite;
-        }
-        
-        /* --- Styles for the skills input --- */
-        .skill-tag {
-            display: inline-flex;
-            align-items: center;
-            background-color: #4f46e5; /* indigo-600 */
-            color: white;
-            padding: 4px 8px 4px 12px;
-            border-radius: 9999px; /* rounded-full */
-            font-size: 14px;
-            font-weight: 500;
-            margin: 4px;
-        }
-        .skill-tag button {
-            margin-left: 8px;
-            background-color: #3730a3; /* indigo-800 */
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.2s;
-        }
-        .skill-tag button:hover {
-            background-color: #c7d2fe; /* indigo-200 */
-            color: #3730a3; /* indigo-800 */
-        }
-        /* --- End skills styles --- */
-    </style>
-</head>
-<body class="bg-gray-900 text-gray-100 flex items-center justify-center min-h-screen p-4 py-12">
-
-    <canvas id="interactive-bg" class="fixed top-0 left-0 w-full h-full z-0"></canvas>
-
-    <div class="bg-gray-800 rounded-xl shadow-2xl max-w-4xl w-full relative z-10 overflow-hidden">
-        
-        <div class="bg-gray-900/50 p-8 text-center border-b border-gray-700">
-            <h1 class="text-3xl font-bold mb-2 text-white flex items-center justify-center gap-3">
-                <svg class="w-8 h-8 text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
-                </svg>
-                Dynamic Workforce Planning Agent
-            </h1>
-            <p class="text-lg text-indigo-300 mb-6">AI-Powered Predictive Staffing and Market Analysis</p>
-            
-            <div class="flex flex-wrap justify-center gap-3 text-sm">
-                <div class="bg-gray-700 rounded-full py-2 px-4 flex items-center gap-2 text-gray-300">
-                    <svg class="w-4 h-4 text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h12M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-12a2.25 2.25 0 0 1-2.25-2.25V3m12.75 0v6.75a2.25 2.25 0 0 1-2.25 2.25H9m3.75 0v-6.75a2.25 2.25 0 0 0-2.25-2.25H9" /></svg>
-                    <span>Pipeline Forecasting</span>
-                </div>
-                <div class="bg-gray-700 rounded-full py-2 px-4 flex items-center gap-2 text-gray-300">
-                    <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" /></svg>
-                    <span>Attrition Prediction</span>
-                </div>
-                <div class="bg-gray-700 rounded-full py-2 px-4 flex items-center gap-2 text-gray-300">
-                    <svg class="w-4 h-4 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" /></svg>
-                    <span>Market Trends</span>
-                </div>
-                <div class="bg-gray-700 rounded-full py-2 px-4 flex items-center gap-2 text-gray-300">
-                    <svg class="w-4 h-4 text-purple-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" /></svg>
-                    <span>AI Recommendations</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="p-8" id="formContainer">
-
-            <div class="bg-gray-700/50 p-6 rounded-lg border border-gray-600 mb-8 text-center">
-                <h2 class="text-2xl font-bold mb-3 text-white">Quick Analysis Report</h2>
-                <p class="text-gray-400 mb-6 max-w-xl mx-auto">
-                    Click the button to get the complete report on the workforce based on the project pipelines, attrition risk, hiring trends, recommending proactive hiring or upskilling.
-                </p>
-            </div>
-                <button id="simple-analysis-button" class="w-full sm:w-auto bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg flex items-center justify-center space-x-3 transition-all duration-300 ease-in-out hover:bg-indigo-700 disabled:bg-gray-500 disabled:cursor-not-allowed mx-auto">
-                    <svg id="simple-button-icon" class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-                    </svg>
-                    <svg id="simple-spinner" class="w-5 h-5 spinner hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <span id="simple-button-text">Start Quick Analysis</span>
-                </button>
-        
-                <div id="simple-message-container" class="mt-6 min-h-[4em]">
+                <div id="simple-message-container" class="mt-6 min-h-[4em] text-center">
                     <p id="simple-success-message" class="hidden text-green-400 font-medium text-base"></p>
                     <p id="simple-error-message" class="hidden text-red-400 font-medium"></p>
                 </div>
@@ -789,7 +145,7 @@
             
             <div class="bg-indigo-900/50 text-indigo-200 p-4 rounded-lg border border-indigo-700 mb-6 flex gap-3 items-start">
                 <svg class="w-6 h-6 text-indigo-300 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
                 </svg>
                 <p><strong>Predictive Analysis:</strong> This agent analyzes your project pipeline, historical attrition patterns, and current hiring market trends to provide proactive workforce recommendations.</p>
             </div>
@@ -853,6 +209,11 @@
                     <div class="hidden bg-red-900/50 text-red-300 p-4 rounded-lg border border-red-700 my-4" id="errorMessage"></div>
                 </div>
 
+                <div id="form-message-container" class="md:col-span-2 min-h-[3em] text-center"> 
+                    <p id="form-success-message" class="hidden text-green-400 font-medium text-base"></p>
+                    <p id="form-error-message" class="hidden text-red-400 font-medium"></p>
+                </div>
+
                 <button type="submit" class="md:col-span-2 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-6 rounded-lg shadow-lg flex items-center justify-center gap-3 transition-all duration-300 ease-in-out disabled:bg-gray-500">
                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v.01a6 6 0 0 1-5.84-7.38C3.91 10.12 7.15 6.45 12 6.45c4.85 0 8.09 3.67 8.09 7.92v.01Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 12H9.75M12 12H9.75M12 12V9.75M12 12V9.75M12 12h2.25M12 12h2.25M12 12v2.25M12 12v2.25M15 12C15 11.2 14.4 10.5 13.5 10.5C12.6 10.5 12 11.2 12 12C12 12.8 12.6 13.5 13.5 13.5C14.4 13.5 15 12.8 15 12Z" /></svg>
     
@@ -867,27 +228,7 @@
             <p class="text-gray-400 mb-8">This may take 15-30 seconds</p>
             
             <div class="max-w-md mx-auto space-y-3 text-left">
-                <div class="bg-gray-700 p-4 rounded-lg flex items-center gap-3 text-gray-400 transition-all duration-500" id="step1">
-                    <svg class="w-5 h-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h12M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-12a2.25 2.25 0 0 1-2.25-2.25V3m12.75 0v6.75a2.25 2.25 0 0 1-2.25 2.25H9m3.75 0v-6.75a2.25 2.25 0 0 0-2.25-2.25H9" /></svg>
-                    <span>Analyzing project pipeline forecast...</span>
                 </div>
-                <div class="bg-gray-700 p-4 rounded-lg flex items-center gap-3 text-gray-400 transition-all duration-500" id="step2">
-                    <svg class="w-5 h-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" /></svg>
-                    <span>Calculating attrition risks...</span>
-                </div>
-                <div class="bg-gray-700 p-4 rounded-lg flex items-center gap-3 text-gray-400 transition-all duration-500" id="step3">
-                    <svg class="w-5 h-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" /></svg>
-                    <span>Processing market hiring trends...</span>
-                </div>
-                <div class="bg-gray-700 p-4 rounded-lg flex items-center gap-3 text-gray-400 transition-all duration-500" id="step4">
-                    <svg class="w-5 h-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" /></svg>
-                    <span>Generating AI recommendations...</span>
-                </div>
-                <div class="bg-gray-700 p-4 rounded-lg flex items-center gap-3 text-gray-400 transition-all duration-500" id="step5">
-                    <svg class="w-5 h-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 9v.906a2.25 2.25 0 0 1-1.183 1.981l-6.478 3.488M2.25 9v.906c0 .94.55 1.767 1.376 2.094l6.22-3.341c.34-.182.73-.182 1.07 0l6.22 3.341c.826-.327 1.376-1.154 1.376-2.094V9M2.25 9h19.5M2.25 9a2.25 2.25 0 0 1-2.25-2.25V5.25A2.25 2.25 0 0 1 2.25 3h19.5A2.25 2.25 0 0 1 24 5.25v1.5A2.25 2.25 0 0 1 21.75 9Z" /></svg>
-                    <span>Preparing detailed report...</span>
-                </div>
-            </div>
         </div>
 
         <div class="hidden p-4 sm:p-8 bg-gray-900" id="resultContainer">
@@ -896,9 +237,10 @@
 
     <script>
     // --- WEBHOOK URLS ---
+    // --- WEBHOOK URLS ---
     const QUICK_ANALYSIS_WEBHOOK_URL = '/api/quick-analysis';
     const DETAILED_FORM_WEBHOOK_URL = '/api/detailed-form';
-    const PDF_WEBHOOK_URL = '/api/pdf-upload'; // <-- NEW
+    const PDF_WEBHOOK_URL = '/api/pdf-upload';
 
     // --- SIMPLE DASHBOARD (FIRST BUTTON) ---
     const simpleAnalysisButton = document.getElementById('simple-analysis-button');
@@ -912,7 +254,7 @@
         simpleAnalysisButton.addEventListener('click', handleSimpleAnalysisClick);
     }
     
-    // --- PDF UPLOAD (NEW) ---
+    // --- PDF UPLOAD ---
     const pdfUploadForm = document.getElementById('pdfUploadForm');
     const pdfFile = document.getElementById('pdfFile');
     const pdfUploadButton = document.getElementById('pdfUploadButton');
@@ -926,16 +268,18 @@
         pdfUploadForm.addEventListener('submit', handlePdfUpload);
     }
 
+    // --- DETAILED FORM ---
+    // ✅ Get the new, dedicated message elements for the form
+    const formSuccessMessage = document.getElementById('form-success-message');
+    const formErrorMessage = document.getElementById('form-error-message');
+
 
     /**
      * Handles the click event for the "Start Quick Analysis" button.
      */
     async function handleSimpleAnalysisClick() {
-        // 1. Set Loading State
         setSimpleLoadingState(true);
-
         try {
-            // 2. Call the Webhook
             const response = await fetch(QUICK_ANALYSIS_WEBHOOK_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -944,33 +288,21 @@
                     timestamp: new Date().toISOString()
                 })
             });
-
-            if (!response.ok) {
-                throw new Error(`Webhook request failed with status: ${response.status}`);
-            }
-
-            // 3. Show Success Message
+            if (!response.ok) throw new Error(`Webhook request failed: ${response.status}`);
             simpleSuccessMessage.innerHTML = 'Analysis started! You will receive the report with:<br/>' +
                 '<span class="font-semibold text-indigo-300">Pipeline Forecast, Attrition Risk & Hiring Market Trends</span>' +
                 '<br/>via email in 5-10 minutes. Feel free to keep this page open.';
             simpleSuccessMessage.classList.remove('hidden');
-            
             simpleButtonText.textContent = 'Analysis Started';
-
         } catch (error) {
-            // 4. Show Error Message
             console.error('Error triggering simple webhook:', error);
             simpleErrorMessage.textContent = 'Failed to start analysis. Please try again or contact support.';
             simpleErrorMessage.classList.remove('hidden');
-            
             setSimpleLoadingState(false); 
-            // FIX: Reset button text to original on error
             simpleButtonText.textContent = 'Start Quick Analysis';
-
         } finally {
-            // 5. Hide spinner
             if (!simpleErrorMessage.classList.contains('hidden')) {
-               // Error already handled
+               // Error handled
             } else {
                 simpleSpinner.classList.add('hidden');
                 if(simpleButtonIcon) simpleButtonIcon.classList.remove('hidden'); 
@@ -986,13 +318,14 @@
         if (!simpleAnalysisButton) return;
         
         simpleAnalysisButton.disabled = isLoading;
+        
+        // ✅ Hide ALL message containers
         simpleSuccessMessage.classList.add('hidden');
         simpleErrorMessage.classList.add('hidden');
-        
-        // Also hide PDF messages to avoid confusion
-        if (pdfSuccessMessage) pdfSuccessMessage.classList.add('hidden');
-        if (pdfErrorMessage) pdfErrorMessage.classList.add('hidden');
-
+        pdfSuccessMessage.classList.add('hidden');
+        pdfErrorMessage.classList.add('hidden');
+        if (formSuccessMessage) formSuccessMessage.classList.add('hidden');
+        if (formErrorMessage) formErrorMessage.classList.add('hidden');
 
         if (isLoading) {
             if(simpleButtonIcon) simpleButtonIcon.classList.add('hidden');
@@ -1001,7 +334,6 @@
         } else {
             if(simpleButtonIcon) simpleButtonIcon.classList.remove('hidden');
             simpleSpinner.classList.add('hidden');
-            // FIX: Reset button text to original
             simpleButtonText.textContent = 'Start Quick Analysis';
         }
     }
@@ -1015,34 +347,19 @@
             setPdfLoadingState(false, 'Please select a PDF file to upload.', false);
             return;
         }
-
         const file = pdfFile.files[0];
         const formData = new FormData();
-        // Your n8n workflow must be set to receive 'Form-Data' with a field named 'file'
         formData.append('file', file); 
-
         setPdfLoadingState(true);
-
         try {
             const response = await fetch(PDF_WEBHOOK_URL, {
                 method: 'POST',
                 body: formData
-                // IMPORTANT: Do NOT set Content-Type header.
-                // The browser will automatically set it to 'multipart/form-data'
-                // with the correct boundary.
             });
-
-            if (!response.ok) {
-                throw new Error(`Upload failed with status: ${response.status}`);
-            }
-
-            // We assume n8n returns a success JSON
+            if (!response.ok) throw new Error(`Upload failed: ${response.status}`);
             await response.json(); 
-            
-            // Show success message
             setPdfLoadingState(false, 'PDF analysis started! You will receive the report via email in 5-10 minutes.', true);
-            pdfUploadForm.reset(); // Clear the file input
-
+            pdfUploadForm.reset(); 
         } catch (error) {
             console.error('Error uploading PDF:', error);
             setPdfLoadingState(false, `Upload failed: ${error.message}. Please try again.`, false);
@@ -1056,12 +373,14 @@
         if (!pdfUploadButton) return;
 
         pdfUploadButton.disabled = isLoading;
+        
+        // ✅ Hide ALL message containers
+        simpleSuccessMessage.classList.add('hidden');
+        simpleErrorMessage.classList.add('hidden');
         pdfSuccessMessage.classList.add('hidden');
         pdfErrorMessage.classList.add('hidden');
-
-        // Also hide simple messages to avoid confusion
-        if (simpleSuccessMessage) simpleSuccessMessage.classList.add('hidden');
-        if (simpleErrorMessage) simpleErrorMessage.classList.add('hidden');
+        if (formSuccessMessage) formSuccessMessage.classList.add('hidden');
+        if (formErrorMessage) formErrorMessage.classList.add('hidden');
 
         if (isLoading) {
             pdfButtonIcon.classList.add('hidden');
@@ -1089,19 +408,24 @@
     document.getElementById('startDate').min = new Date().toISOString().split('T')[0];
 
     /**
-     * Handles the submit event for the "Generate AI-Powered" (detailed) form.
-     * --- CORRECTED VERSION from our last conversation ---
-     * This triggers the webhook and shows an email-sent confirmation.
+     * ✅ JAVASCRIPT CORRECTED
+     * This function now writes ONLY to the 'form-success-message'
+     * and 'form-error-message' elements.
      */
     document.getElementById('projectForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         
+        const detailedSubmitButton = e.target.querySelector('button[type="submit"]');
+        const originalButtonHTML = detailedSubmitButton.innerHTML;
+        
+        // --- Validation ---
         if (skillsSet.size === 0) {
             showError('Please add at least one required skill.');
             document.getElementById('skillsInput').focus();
             return;
         }
 
+        // --- Collect Form Data ---
         const formData = {
             project_name: document.getElementById('projectName').value,
             project_type: document.getElementById('projectType').value,
@@ -1112,65 +436,66 @@
             trigger: 'detailed_forecast_v1'
         };
 
-        // 1. Show loading screen & clear old messages
-        document.getElementById('formContainer').style.display = 'none';
-        document.getElementById('loadingContainer').style.display = 'block';
-        document.getElementById('errorMessage').style.display = 'none'; // Clear validation errors
-        simpleSuccessMessage.classList.add('hidden'); // Clear old success
-        simpleErrorMessage.classList.add('hidden');   // Clear old errors
-        pdfSuccessMessage.classList.add('hidden'); // Clear PDF messages
-        pdfErrorMessage.classList.add('hidden');
+        // 1. --- Set Loading State ---
+        detailedSubmitButton.disabled = true;
+        detailedSubmitButton.innerHTML = `
+            <svg class="w-5 h-5 spinner" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span id="simple-button-text">Analysis in Progress...</span>
+        `;
         
-        const loadingInterval = animateLoadingSteps();
+        // ✅ Hide ALL message containers
+        document.getElementById('errorMessage').style.display = 'none'; // Validation
+        simpleSuccessMessage.classList.add('hidden');
+        simpleErrorMessage.classList.add('hidden');
+        pdfSuccessMessage.classList.add('hidden');
+        pdfErrorMessage.classList.add('hidden');
+        formSuccessMessage.classList.add('hidden');
+        formErrorMessage.classList.add('hidden');
 
         try {
-            // 2. Call the correct detailed webhook
+            // 2. --- Call Webhook ---
             const response = await fetch(DETAILED_FORM_WEBHOOK_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             });
 
-            // 3. Stop loading UI
-            clearInterval(loadingInterval);
-            document.getElementById('loadingContainer').style.display = 'none';
-            document.getElementById('formContainer').style.display = 'block'; // Show form again
-
             if (!response.ok) {
                 throw new Error(`Webhook request failed with status: ${response.status}`);
             }
 
-            // 4. --- SUCCESS ---
-            // Show the "email" message using the simple message container
-            simpleSuccessMessage.innerHTML = 'Detailed analysis started! You will receive the report with:<br/>' +
+            // 3. --- SUCCESS ---
+            // ✅ Write to the correct, dedicated message element
+            formSuccessMessage.innerHTML = 'Detailed analysis started! You will receive the report with:<br/>' +
                 '<span class="font-semibold text-indigo-300">Your Custom Pipeline Forecast & Recommendations</span>' +
                 '<br/>via email in 5-10 minutes.';
-            simpleSuccessMessage.classList.remove('hidden');
+            formSuccessMessage.classList.remove('hidden');
             
-            // Reset the form for the next entry
             document.getElementById('projectForm').reset();
             skillsSet.clear();
             document.getElementById('skillsContainer').innerHTML = '';
             
-            // Scroll to the top to see the success message
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
+            // Scroll the message into view
+            formSuccessMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
         } catch (error) {
-            // 5. --- ERROR ---
+            // 4. --- ERROR ---
             console.error('Error triggering detailed webhook:', error);
             
-            // Stop loading UI
-            clearInterval(loadingInterval);
-            document.getElementById('loadingContainer').style.display = 'none';
-            document.getElementById('formContainer').style.display = 'block'; // Show form again
-
-            // Show the error message using the simple message container
-            simpleErrorMessage.textContent = `Detailed analysis failed: ${error.message}. Please try again.`;
-            simpleErrorMessage.classList.remove('hidden');
-
-            // Scroll to the top to see the error message
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // ✅ Write to the correct, dedicated message element
+            formErrorMessage.textContent = `Detailed analysis failed: ${error.message}. Please try again.`;
+            formErrorMessage.classList.remove('hidden');
+            
+            // Scroll the message into view
+            formErrorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        } finally {
+            // 5. --- ALWAYS ---
+            detailedSubmitButton.disabled = false;
+            detailedSubmitButton.innerHTML = originalButtonHTML;
         }
     });
 
@@ -1188,52 +513,26 @@
         skillsSet.clear();
         document.getElementById('skillsContainer').innerHTML = '';
         
-        // Hide results/loading and show the form
         document.getElementById('resultContainer').style.display = 'none';
         document.getElementById('loadingContainer').style.display = 'none';
         document.getElementById('formContainer').style.display = 'block';
         document.getElementById('errorMessage').style.display = 'none';
         
-        // Clear all message containers
+        // ✅ Clear ALL message containers
         simpleSuccessMessage.classList.add('hidden');
         simpleErrorMessage.classList.add('hidden');
         pdfSuccessMessage.classList.add('hidden');
         pdfErrorMessage.classList.add('hidden');
+        if (formSuccessMessage) formSuccessMessage.classList.add('hidden');
+        if (formErrorMessage) formErrorMessage.classList.add('hidden');
         
         // Reset loading steps visual
         ['step1', 'step2', 'step3', 'step4', 'step5'].forEach(step => {
             const el = document.getElementById(step);
-            el.classList.remove('scale-105', 'border', 'border-indigo-700', 'bg-indigo-900/50', '!text-white', '!text-green-300', 'opacity-70');
+            if (el) el.classList.remove('scale-105', 'border', 'border-indigo-700', 'bg-indigo-900/50', '!text-white', '!text-green-300', 'opacity-70');
         });
         
         window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function animateLoadingSteps() {
-        const steps = ['step1', 'step2', 'step3', 'step4', 'step5'];
-        let currentStep = 0;
-        
-        const interval = setInterval(() => {
-            if (currentStep > 0) {
-                const prevStep = document.getElementById(steps[currentStep - 1]);
-                if (prevStep) {
-                    prevStep.classList.remove('scale-105', 'border-indigo-700', 'bg-indigo-900/50', '!text-white');
-                    prevStep.classList.add('!text-green-300', 'opacity-70');
-                }
-            }
-            
-            if (currentStep < steps.length) {
-                const currentStepEl = document.getElementById(steps[currentStep]);
-                if (currentStepEl) {
-                    currentStepEl.classList.add('scale-105', 'border', 'border-indigo-700', 'bg-indigo-900/50', '!text-white');
-                }
-                currentStep++;
-            } else {
-                clearInterval(interval);
-            }
-        }, 3000); // This timing is for visual effect
-        
-        return interval;
     }
 
     // --- SKILLS TAG SCRIPT ---
@@ -1241,16 +540,18 @@
     const skillsContainer = document.getElementById('skillsContainer');
     const skillsInput = document.getElementById('skillsInput');
 
-    skillsInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ',') {
-            e.preventDefault();
-            const skill = skillsInput.value.trim();
-            if (skill) {
-                addSkill(skill);
-                skillsInput.value = '';
+    if (skillsInput) {
+        skillsInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ',') {
+                e.preventDefault();
+                const skill = skillsInput.value.trim();
+                if (skill) {
+                    addSkill(skill);
+                    skillsInput.value = '';
+                }
             }
-        }
-    });
+        });
+    }
 
     function addSkill(skill) {
         const skillName = skill.toLowerCase();
@@ -1274,104 +575,106 @@
     
     // --- INTERACTIVE CANVAS BACKGROUND SCRIPT ---
     const canvas = document.getElementById('interactive-bg');
-    const ctx = canvas.getContext('2d');
-    let particlesArray = [];
-    let mouse = { x: null, y: null, radius: 100 };
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let particlesArray = [];
+        let mouse = { x: null, y: null, radius: 100 };
 
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    window.addEventListener('mousemove', (event) => {
-        mouse.x = event.x;
-        mouse.y = event.y;
-    });
-    window.addEventListener('mouseout', () => {
-        mouse.x = null;
-        mouse.y = null;
-    });
-
-    class Particle {
-        constructor(x, y, size, color) {
-            this.x = x;
-            this.y = y;
-            this.size = size;
-            this.color = color;
-            this.baseX = this.x;
-            this.baseY = this.baseY;
-            this.density = (Math.random() * 30) + 1;
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
-        draw() {
-            ctx.fillStyle = this.color;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.closePath();
-            ctx.fill();
-        }
-        update() {
-            let dx = mouse.x - this.x;
-            let dy = mouse.y - this.y;
-            let distance = Math.sqrt(dx * dx + dy * dy);
-            let forceDirectionX = dx / distance;
-            let forceDirectionY = dy / distance;
-            let maxDistance = mouse.radius;
-            let force = (maxDistance - distance) / maxDistance;
-            let directionX = 0;
-            let directionY = 0;
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
 
-            if (distance < mouse.radius) {
-                directionX = -forceDirectionX * force * this.density;
-                directionY = -forceDirectionY * force * this.density;
-            } else {
-                if (this.x !== this.baseX) {
-                    let dx_base = this.x - thisB.baseX;
-                    directionX = -dx_base / 20;
-                }
-                if (this.y !== this.baseY) {
-                    let dy_base = this.y - this.baseY;
-                    directionY = -dy_base / 20;
-                }
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        class Particle {
+            constructor(x, y, size, color) {
+                this.x = x;
+                this.y = y;
+                this.size = size;
+                this.color = color;
+                this.baseX = this.x;
+                this.baseY = this.y;
+                this.density = (Math.random() * 30) + 1;
             }
-            this.x += directionX;
-            this.y += directionY;
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.fill();
+            }
+            update() {
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                let forceDirectionX = dx / distance;
+                let forceDirectionY = dy / distance;
+                let maxDistance = mouse.radius;
+                let force = (maxDistance - distance) / maxDistance;
+                let directionX = 0;
+                let directionY = 0;
+
+                if (distance < mouse.radius && mouse.x !== null) {
+                    directionX = -forceDirectionX * force * this.density;
+                    directionY = -forceDirectionY * force * this.density;
+                } else {
+                    if (this.x !== this.baseX) {
+                        let dx_base = this.x - this.baseX;
+                        directionX = -dx_base / 20;
+                    }
+                    if (this.y !== this.baseY) {
+                        let dy_base = this.y - this.baseY;
+                        directionY = -dy_base / 20;
+                    }
+                }
+                this.x += directionX;
+                this.y += directionY;
+            }
         }
-    }
 
-    function initParticles() {
-        particlesArray = [];
-        let numberOfParticles = (canvas.width * canvas.height) / 9000;
-        for (let i = 0; i < numberOfParticles; i++) {
-            let size = (Math.random() * 1.5) + 1;
-            let x = Math.random() * canvas.width;
-            let y = Math.random() * canvas.height;
-            let color = 'rgba(165, 180, 252, 0.5)'; // indigo-300 with opacity
-            particlesArray.push(new Particle(x, y, size, color));
+        function initParticles() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.width * canvas.height) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 1.5) + 1;
+                let x = Math.random() * canvas.width;
+                let y = Math.random() * canvas.height;
+                let color = 'rgba(165, 180, 252, 0.5)'; // indigo-300 with opacity
+                particlesArray.push(new Particle(x, y, size, color));
+            }
         }
-    }
 
-    function animateParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let i = 0; i < particlesArray.length; i++) {
-            particlesArray[i].update();
-            particlesArray[i].draw();
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
         }
-        requestAnimationFrame(animateParticles);
+
+        initParticles();
+        animateParticles();
+
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                resizeCanvas();
+                initParticles();
+            }, 100);
+        });
     }
-
-    initParticles();
-    animateParticles();
-
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-            resizeCanvas();
-            initParticles();
-        }, 100);
-    });
 </script>
 </body>
 </html>
