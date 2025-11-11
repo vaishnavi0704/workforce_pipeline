@@ -407,65 +407,38 @@
             document.getElementById('loadingContainer').style.display = 'none';
 
             if (!response.ok) {
-                throw new Error(`Webhook request failed with status: ${response.status}`);
-            }
+                    throw new Error(`Webhook request failed with status: ${response.status}`);
+                }
 
-            const result = await response.json();
-            
-            // Check for both URL and Name
-            if (result.pdf_url && result.pdf_name && result.pdf_url.startsWith('https')) {
-                // Trigger the download
-                await triggerPDFDownload(result.pdf_url, result.pdf_name, 'Detailed_Forecast.pdf');
+                // 3. Show Success Message
+                simpleSuccessMessage.innerHTML = 'Analysis started! You will receive the report with:<br/>' +
+                    '<span class="font-semibold text-indigo-300">Pipeline Forecast, Attrition Risk & Hiring Market Trends</span>' +
+                    '<br/>via email in 5-10 minutes. Feel free to keep this page open.';
+                simpleSuccessMessage.classList.remove('hidden');
                 
-                // Success! Reset the form.
-                resetForm();
+                simpleButtonText.textContent = 'Analysis Started';
 
-            } else {
-                console.error("API response was successful but data is invalid or missing.", result);
-                throw new Error("Received an invalid response from the server. Please try again.");
+            } catch (error) {
+                // 4. Show Error Message
+                console.error('Error triggering simple webhook:', error);
+                simpleErrorMessage.textContent = 'Failed to start analysis. Please try again or contact support.';
+                simpleErrorMessage.classList.remove('hidden');
+                
+                setSimpleLoadingState(false); 
+                simpleButtonText.textContent = 'Start Quick Analysis';
+
+            } finally {
+                // 5. Hide spinner
+                if (!simpleErrorMessage.classList.contains('hidden')) {
+                   // Error already handled
+                } else {
+                    simpleSpinner.classList.add('hidden');
+                    if(simpleButtonIcon) simpleButtonIcon.classList.remove('hidden'); 
+                }
             }
-
-        } catch (error) {
-            console.error('Error during fetch operation:', error);
-            clearInterval(loadingInterval);
-            document.getElementById('loadingContainer').style.display = 'none';
-            
-            showError(error.message || "An unknown error occurred. Please check your connection and try again.");
-            
-            document.getElementById('formContainer').style.display = 'block';
-            document.getElementById('errorMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
-    });
+    );
 
-    /**
-     * Generic function to fetch a PDF from a URL and trigger a browser download.
-     */
-    async function triggerPDFDownload(pdfUrl, pdfName, defaultFileName) {
-        // Fetch the PDF file itself
-        const pdfResponse = await fetch(pdfUrl);
-        if (!pdfResponse.ok) {
-            throw new Error('Failed to fetch the PDF file.');
-        }
-        
-        // Get the file data as a Blob
-        const blob = await pdfResponse.blob();
-        
-        // Create a temporary URL for the Blob
-        const blobUrl = URL.createObjectURL(blob);
-        
-        // Create a temporary link to trigger the download
-        const link = document.createElement('a');
-        link.href = blobUrl;
-        link.download = pdfName || defaultFileName; 
-        
-        // Trigger the download pop-up
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        
-        // Clean up the Blob URL
-        URL.revokeObjectURL(blobUrl);
-    }
 
     // --- UTILITY & ANIMATION FUNCTIONS ---
 
