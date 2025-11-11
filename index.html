@@ -90,12 +90,12 @@
 
         <div class="p-8" id="formContainer">
 
-            <div class="bg-gray-700/50 p-6 rounded-lg border border-gray-600 mb-8 text-center">
+            <!-- QUICK ANALYSIS SECTION -->
+            <div class="bg-gray-700/50 p-6 rounded-lg border border-gray-600 mb-6 text-center">
                 <h2 class="text-2xl font-bold mb-3 text-white">Quick Analysis Report</h2>
                 <p class="text-gray-400 mb-6 max-w-xl mx-auto">
                     Click the button to get the complete report on the workforce based on the project pipelines, attrition risk, hiring trends, recommending proactive hiring or upskilling.
                 </p>
-            </div>
                 <button id="simple-analysis-button" class="w-full sm:w-auto bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg flex items-center justify-center space-x-3 transition-all duration-300 ease-in-out hover:bg-indigo-700 disabled:bg-gray-500 disabled:cursor-not-allowed mx-auto">
                     <svg id="simple-button-icon" class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
@@ -106,15 +106,20 @@
                     </svg>
                     <span id="simple-button-text">Start Quick Analysis</span>
                 </button>
-        
-                <div id="simple-message-container" class="mt-6 min-h-[4em] text-center">
-                    <p id="simple-success-message" class="hidden text-green-400 font-medium text-base"></p>
-                    <p id="simple-error-message" class="hidden text-red-400 font-medium"></p>
-                </div>
                 
-                <hr class="border-t border-gray-600 my-4">
-                <p class="text-lg font-semibold text-gray-300">Or, upload a project PDF for analysis:</p>
-                <form id="pdfUploadForm" class="mt-4 bg-gray-700/50 p-6 rounded-lg border border-gray-600 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <!-- DEDICATED MESSAGE CONTAINER FOR QUICK ANALYSIS -->
+                <div id="simple-message-container" class="mt-6">
+                    <div id="simple-success-message" class="hidden bg-green-900/50 text-green-300 p-4 rounded-lg border border-green-700"></div>
+                    <div id="simple-error-message" class="hidden bg-red-900/50 text-red-300 p-4 rounded-lg border border-red-700"></div>
+                </div>
+            </div>
+                
+            <hr class="border-t border-gray-600 my-8">
+            
+            <!-- PDF UPLOAD SECTION -->
+            <div class="bg-gray-700/50 p-6 rounded-lg border border-gray-600 mb-6">
+                <h2 class="text-xl font-semibold text-gray-300 mb-4">Upload a Project PDF for Analysis</h2>
+                <form id="pdfUploadForm" class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div class="flex-grow">
                         <label for="pdfFile" class="sr-only">Upload PDF</label>
                         <input type="file" id="pdfFile" accept=".pdf" required class="w-full text-sm text-gray-300
@@ -136,149 +141,149 @@
                         <span id="pdf-button-text">Upload & Analyze</span>
                     </button>
                 </form>
-                <div id="pdf-message-container" class="mt-4 min-h-[2em]">
-                    <p id="pdf-success-message" class="hidden text-green-400 font-medium text-base"></p>
-                    <p id="pdf-error-message" class="hidden text-red-400 font-medium"></p>
+                
+                <!-- DEDICATED MESSAGE CONTAINER FOR PDF UPLOAD -->
+                <div id="pdf-message-container" class="mt-4">
+                    <div id="pdf-success-message" class="hidden bg-green-900/50 text-green-300 p-4 rounded-lg border border-green-700"></div>
+                    <div id="pdf-error-message" class="hidden bg-red-900/50 text-red-300 p-4 rounded-lg border border-red-700"></div>
                 </div>
-                <hr class="border-t border-gray-600 my-4">
-                <p class="text-lg font-semibold text-gray-300">Or, fill out the form for a detailed project pipeline forecast:</p>
-            
-            <div class="bg-indigo-900/50 text-indigo-200 p-4 rounded-lg border border-indigo-700 mb-6 flex gap-3 items-start">
-                <svg class="w-6 h-6 text-indigo-300 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
-                </svg>
-                <p><strong>Predictive Analysis:</strong> This agent analyzes your project pipeline, historical attrition patterns, and current hiring market trends to provide proactive workforce recommendations.</p>
             </div>
+            
+            <hr class="border-t border-gray-600 my-8">
+            
+            <!-- DETAILED FORM SECTION -->
+            <div class="bg-gray-700/50 p-6 rounded-lg border border-gray-600">
+                <h2 class="text-xl font-semibold text-gray-300 mb-4">Fill Out the Form for Detailed Project Pipeline Forecast</h2>
+            
+                <div class="bg-indigo-900/50 text-indigo-200 p-4 rounded-lg border border-indigo-700 mb-6 flex gap-3 items-start">
+                    <svg class="w-6 h-6 text-indigo-300 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                    </svg>
+                    <p><strong>Predictive Analysis:</strong> This agent analyzes your project pipeline, historical attrition patterns, and current hiring market trends to provide proactive workforce recommendations.</p>
+                </div>
 
-            <form id="projectForm" class="grid grid-cols-1 md:grid-cols-2 gap-x-6">
-                <div>
-                    <div class="mb-6">
-                        <label for="projectName" class="block mb-2 text-sm font-medium text-gray-300">Project Name *</label>
-                        <input type="text" id="projectName" required placeholder="e.g., AI Chatbot Development" class="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-3">
-                    </div>
+                <form id="projectForm" class="grid grid-cols-1 md:grid-cols-2 gap-x-6">
+                    <div>
+                        <div class="mb-6">
+                            <label for="projectName" class="block mb-2 text-sm font-medium text-gray-300">Project Name *</label>
+                            <input type="text" id="projectName" required placeholder="e.g., AI Chatbot Development" class="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-3">
+                        </div>
 
-                    <div class="mb-6">
-                        <label for="projectType" class="block mb-2 text-sm font-medium text-gray-300">Project Type *</label>
-                        <select id="projectType" required class="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-3">
-                            <option value="">Select project type</option>
-                            <option value="Software Development">Software Development</option>
-                            <option value="Consulting">Consulting</option>
-                            <option value="Data Analytics">Data Analytics</option>
-                            <option value="Infrastructure">Infrastructure</option>
-                            <option value="Marketing Campaign">Marketing Campaign</option>
-                            <option value="Digital Transformation">Digital Transformation</option>
-                        </select>
-                    </div>
+                        <div class="mb-6">
+                            <label for="projectType" class="block mb-2 text-sm font-medium text-gray-300">Project Type *</label>
+                            <select id="projectType" required class="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-3">
+                                <option value="">Select project type</option>
+                                <option value="Software Development">Software Development</option>
+                                <option value="Consulting">Consulting</option>
+                                <option value="Data Analytics">Data Analytics</option>
+                                <option value="Infrastructure">Infrastructure</option>
+                                <option value="Marketing Campaign">Marketing Campaign</option>
+                                <option value="Digital Transformation">Digital Transformation</option>
+                            </select>
+                        </div>
 
-                    <div class="mb-6">
-                        <label for="skillsInput" class="block mb-2 text-sm font-medium text-gray-300">
-                            Required Skills * <span class="text-xs text-gray-400">(Type a skill and press Enter or Comma)</span>
-                        </label>
-                        <div class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus-within:ring-indigo-500 focus-within:border-indigo-500 p-3 flex flex-wrap items-center">
-                            <div id="skillsContainer" class="flex flex-wrap">
+                        <div class="mb-6">
+                            <label for="skillsInput" class="block mb-2 text-sm font-medium text-gray-300">
+                                Required Skills * <span class="text-xs text-gray-400">(Type a skill and press Enter or Comma)</span>
+                            </label>
+                            <div class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus-within:ring-indigo-500 focus-within:border-indigo-500 p-3 flex flex-wrap items-center">
+                                <div id="skillsContainer" class="flex flex-wrap">
                                 </div>
-                            <input type="text" id="skillsInput" placeholder="e.g., Python, React, AWS..." class="bg-transparent flex-1 focus:outline-none min-w-[150px] p-1">
+                                <input type="text" id="skillsInput" placeholder="e.g., Python, React, AWS..." class="bg-transparent flex-1 focus:outline-none min-w-[150px] p-1">
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div>
-                    <div class="mb-6">
-                        <label for="complexity" class="block mb-2 text-sm font-medium text-gray-300">Project Complexity *</label>
-                        <select id="complexity" required class="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-3">
-                            <option value="">Select complexity</option>
-                            <option value="Low">Low - Standard implementation</option>
-                            <option value="Medium">Medium - Moderate challenges</option>
-                            <option value="High">High - Complex requirements</option>
-                            <option value="Critical">Critical - Mission critical system</option>
-                        </select>
+                    <div>
+                        <div class="mb-6">
+                            <label for="complexity" class="block mb-2 text-sm font-medium text-gray-300">Project Complexity *</label>
+                            <select id="complexity" required class="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-3">
+                                <option value="">Select complexity</option>
+                                <option value="Low">Low - Standard implementation</option>
+                                <option value="Medium">Medium - Moderate challenges</option>
+                                <option value="High">High - Complex requirements</option>
+                                <option value="Critical">Critical - Mission critical system</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="startDate" class="block mb-2 text-sm font-medium text-gray-300">Expected Start Date *</label>
+                            <input type="date" id="startDate" required class="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-3" placeholder="dd/mm/yyyy">
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="duration" class="block mb-2 text-sm font-medium text-gray-300">Project Duration (months) *</label>
+                            <input type="number" id="duration" required min="1" max="36" placeholder="e.g., 8" class="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-3">
+                        </div>
+                    </div>
+                    
+                    <div class="md:col-span-2">
+                        <div class="hidden bg-red-900/50 text-red-300 p-4 rounded-lg border border-red-700 my-4" id="errorMessage"></div>
                     </div>
 
-                    <div class="mb-6">
-                        <label for="startDate" class="block mb-2 text-sm font-medium text-gray-300">Expected Start Date *</label>
-                        <input type="date" id="startDate" required class="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-3" placeholder="dd/mm/yyyy">
+                    <!-- DEDICATED MESSAGE CONTAINER FOR FORM SUBMISSION -->
+                    <div class="md:col-span-2 mb-4">
+                        <div id="form-success-message" class="hidden bg-green-900/50 text-green-300 p-4 rounded-lg border border-green-700"></div>
+                        <div id="form-error-message" class="hidden bg-red-900/50 text-red-300 p-4 rounded-lg border border-red-700"></div>
                     </div>
 
-                    <div class="mb-6">
-                        <label for="duration" class="block mb-2 text-sm font-medium text-gray-300">Project Duration (months) *</label>
-                        <input type="number" id="duration" required min="1" max="36" placeholder="e.g., 8" class="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-3">
-                    </div>
-                </div>
-                
-                <div class="md:col-span-2">
-                    <div class="hidden bg-red-900/50 text-red-300 p-4 rounded-lg border border-red-700 my-4" id="errorMessage"></div>
-                </div>
-
-                <div id="form-message-container" class="md:col-span-2 min-h-[3em] text-center"> 
-                    <p id="form-success-message" class="hidden text-green-400 font-medium text-base"></p>
-                    <p id="form-error-message" class="hidden text-red-400 font-medium"></p>
-                </div>
-
-                <button type="submit" class="md:col-span-2 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-6 rounded-lg shadow-lg flex items-center justify-center gap-3 transition-all duration-300 ease-in-out disabled:bg-gray-500">
-                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v.01a6 6 0 0 1-5.84-7.38C3.91 10.12 7.15 6.45 12 6.45c4.85 0 8.09 3.67 8.09 7.92v.01Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 12H9.75M12 12H9.75M12 12V9.75M12 12V9.75M12 12h2.25M12 12h2.25M12 12v2.25M12 12v2.25M15 12C15 11.2 14.4 10.5 13.5 10.5C12.6 10.5 12 11.2 12 12C12 12.8 12.6 13.5 13.5 13.5C14.4 13.5 15 12.8 15 12Z" /></svg>
-    
-                    Generate AI-Powered Workforce Forecast
-                </button>
-            </form>
+                    <button type="submit" class="md:col-span-2 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-6 rounded-lg shadow-lg flex items-center justify-center gap-3 transition-all duration-300 ease-in-out disabled:bg-gray-500">
+                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v.01a6 6 0 0 1-5.84-7.38C3.91 10.12 7.15 6.45 12 6.45c4.85 0 8.09 3.67 8.09 7.92v.01Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 12H9.75M12 12H9.75M12 12V9.75M12 12V9.75M12 12h2.25M12 12h2.25M12 12v2.25M12 12v2.25M15 12C15 11.2 14.4 10.5 13.5 10.5C12.6 10.5 12 11.2 12 12C12 12.8 12.6 13.5 13.5 13.5C14.4 13.5 15 12.8 15 12Z" /></svg>
+                        Generate AI-Powered Workforce Forecast
+                    </button>
+                </form>
+            </div>
         </div>
 
         <div class="hidden p-8 sm:p-12 text-center" id="loadingContainer">
             <div class="spinner w-16 h-16 mx-auto border-4 border-gray-600 border-t-indigo-500 rounded-full"></div>
             <h3 class="text-2xl font-bold mt-6 mb-2 text-white">AI Agent Analyzing Your Workforce Needs...</h3>
             <p class="text-gray-400 mb-8">This may take 15-30 seconds</p>
-            
-            <div class="max-w-md mx-auto space-y-3 text-left">
-                </div>
         </div>
 
         <div class="hidden p-4 sm:p-8 bg-gray-900" id="resultContainer">
-            </div>
+        </div>
     </div>
 
     <script>
-    // --- WEBHOOK URLS ---
-    // --- WEBHOOK URLS ---
-    const QUICK_ANALYSIS_WEBHOOK_URL = '/api/quick-analysis';
-    const DETAILED_FORM_WEBHOOK_URL = '/api/detailed-form';
-    const PDF_WEBHOOK_URL = '/api/pdf-upload';
+    // ✅ CORRECTED WEBHOOK URLS - Using PRODUCTION URLs
+    const QUICK_ANALYSIS_WEBHOOK_URL = 'https://n8n.solutionspace.in/webhook/c599ba9f-2b93-4cff-85bb-ce3ff1ef8150'; // Replace with your actual quick analysis webhook
+    const DETAILED_FORM_WEBHOOK_URL = 'https://n8n.solutionspace.in/webhook/14d07caa-9a4e-4226-96aa-b12623c618bf';
+    const PDF_WEBHOOK_URL = 'https://n8n.solutionspace.in/webhook/f6f20cd2-c28c-499e-92d2-290cef4fdefd'; // ✅ CORRECTED - Now using production URL
 
-    // --- SIMPLE DASHBOARD (FIRST BUTTON) ---
+    // --- Get all message elements ---
+    const simpleSuccessMessage = document.getElementById('simple-success-message');
+    const simpleErrorMessage = document.getElementById('simple-error-message');
+    const pdfSuccessMessage = document.getElementById('pdf-success-message');
+    const pdfErrorMessage = document.getElementById('pdf-error-message');
+    const formSuccessMessage = document.getElementById('form-success-message');
+    const formErrorMessage = document.getElementById('form-error-message');
+
+    // --- Function to hide ALL messages ---
+    function hideAllMessages() {
+        simpleSuccessMessage.classList.add('hidden');
+        simpleErrorMessage.classList.add('hidden');
+        pdfSuccessMessage.classList.add('hidden');
+        pdfErrorMessage.classList.add('hidden');
+        formSuccessMessage.classList.add('hidden');
+        formErrorMessage.classList.add('hidden');
+        document.getElementById('errorMessage').style.display = 'none';
+    }
+
+    // --- SIMPLE DASHBOARD (QUICK ANALYSIS BUTTON) ---
     const simpleAnalysisButton = document.getElementById('simple-analysis-button');
     const simpleButtonText = document.getElementById('simple-button-text');
     const simpleButtonIcon = document.getElementById('simple-button-icon');
     const simpleSpinner = document.getElementById('simple-spinner');
-    const simpleSuccessMessage = document.getElementById('simple-success-message');
-    const simpleErrorMessage = document.getElementById('simple-error-message');
 
     if (simpleAnalysisButton) {
         simpleAnalysisButton.addEventListener('click', handleSimpleAnalysisClick);
     }
-    
-    // --- PDF UPLOAD ---
-    const pdfUploadForm = document.getElementById('pdfUploadForm');
-    const pdfFile = document.getElementById('pdfFile');
-    const pdfUploadButton = document.getElementById('pdfUploadButton');
-    const pdfButtonText = document.getElementById('pdf-button-text');
-    const pdfButtonIcon = document.getElementById('pdf-button-icon');
-    const pdfSpinner = document.getElementById('pdf-spinner');
-    const pdfSuccessMessage = document.getElementById('pdf-success-message');
-    const pdfErrorMessage = document.getElementById('pdf-error-message');
-    
-    if (pdfUploadForm) {
-        pdfUploadForm.addEventListener('submit', handlePdfUpload);
-    }
 
-    // --- DETAILED FORM ---
-    // ✅ Get the new, dedicated message elements for the form
-    const formSuccessMessage = document.getElementById('form-success-message');
-    const formErrorMessage = document.getElementById('form-error-message');
-
-
-    /**
-     * Handles the click event for the "Start Quick Analysis" button.
-     */
     async function handleSimpleAnalysisClick() {
+        hideAllMessages();
         setSimpleLoadingState(true);
+
         try {
             const response = await fetch(QUICK_ANALYSIS_WEBHOOK_URL, {
                 method: 'POST',
@@ -288,99 +293,116 @@
                     timestamp: new Date().toISOString()
                 })
             });
-            if (!response.ok) throw new Error(`Webhook request failed: ${response.status}`);
-            simpleSuccessMessage.innerHTML = 'Analysis started! You will receive the report with:<br/>' +
-                '<span class="font-semibold text-indigo-300">Pipeline Forecast, Attrition Risk & Hiring Market Trends</span>' +
-                '<br/>via email in 5-10 minutes. Feel free to keep this page open.';
+
+            if (!response.ok) {
+                throw new Error(`Webhook request failed with status: ${response.status}`);
+            }
+
+            simpleSuccessMessage.innerHTML = '✅ <strong>Analysis started successfully!</strong><br/>' +
+                'You will receive the report with <span class="font-semibold">Pipeline Forecast, Attrition Risk & Hiring Market Trends</span> via email in 5-10 minutes.';
             simpleSuccessMessage.classList.remove('hidden');
             simpleButtonText.textContent = 'Analysis Started';
+
         } catch (error) {
             console.error('Error triggering simple webhook:', error);
-            simpleErrorMessage.textContent = 'Failed to start analysis. Please try again or contact support.';
+            simpleErrorMessage.innerHTML = '❌ <strong>Failed to start analysis.</strong><br/>' + error.message + '<br/>Please try again or contact support.';
             simpleErrorMessage.classList.remove('hidden');
-            setSimpleLoadingState(false); 
+            setSimpleLoadingState(false);
             simpleButtonText.textContent = 'Start Quick Analysis';
         } finally {
+            simpleSpinner.classList.add('hidden');
             if (!simpleErrorMessage.classList.contains('hidden')) {
-               // Error handled
-            } else {
-                simpleSpinner.classList.add('hidden');
-                if(simpleButtonIcon) simpleButtonIcon.classList.remove('hidden'); 
+                if (simpleButtonIcon) simpleButtonIcon.classList.remove('hidden');
             }
         }
     }
 
-
-    /**
-     * Toggles the UI state for the simple analysis button.
-     */
     function setSimpleLoadingState(isLoading) {
         if (!simpleAnalysisButton) return;
-        
         simpleAnalysisButton.disabled = isLoading;
-        
-        // ✅ Hide ALL message containers
-        simpleSuccessMessage.classList.add('hidden');
-        simpleErrorMessage.classList.add('hidden');
-        pdfSuccessMessage.classList.add('hidden');
-        pdfErrorMessage.classList.add('hidden');
-        if (formSuccessMessage) formSuccessMessage.classList.add('hidden');
-        if (formErrorMessage) formErrorMessage.classList.add('hidden');
 
         if (isLoading) {
-            if(simpleButtonIcon) simpleButtonIcon.classList.add('hidden');
+            if (simpleButtonIcon) simpleButtonIcon.classList.add('hidden');
             simpleSpinner.classList.remove('hidden');
             simpleButtonText.textContent = 'Analysis in Progress...';
         } else {
-            if(simpleButtonIcon) simpleButtonIcon.classList.remove('hidden');
+            if (simpleButtonIcon) simpleButtonIcon.classList.remove('hidden');
             simpleSpinner.classList.add('hidden');
             simpleButtonText.textContent = 'Start Quick Analysis';
         }
     }
 
-    /**
-     * Handles the PDF upload form submission.
-     */
+    // --- PDF UPLOAD ---
+    const pdfUploadForm = document.getElementById('pdfUploadForm');
+    const pdfFile = document.getElementById('pdfFile');
+    const pdfUploadButton = document.getElementById('pdfUploadButton');
+    const pdfButtonText = document.getElementById('pdf-button-text');
+    const pdfButtonIcon = document.getElementById('pdf-button-icon');
+    const pdfSpinner = document.getElementById('pdf-spinner');
+
+    if (pdfUploadForm) {
+        pdfUploadForm.addEventListener('submit', handlePdfUpload);
+    }
+
     async function handlePdfUpload(e) {
         e.preventDefault();
+        hideAllMessages();
+
         if (pdfFile.files.length === 0) {
-            setPdfLoadingState(false, 'Please select a PDF file to upload.', false);
+            pdfErrorMessage.innerHTML = '❌ <strong>Please select a PDF file to upload.</strong>';
+            pdfErrorMessage.classList.remove('hidden');
             return;
         }
+
         const file = pdfFile.files[0];
+        
+        // ✅ Log file details for debugging
+        console.log('Uploading file:', file.name, 'Size:', file.size, 'Type:', file.type);
+        
         const formData = new FormData();
-        formData.append('file', file); 
+        formData.append('file', file);
+        formData.append('uploadType', 'project_pipeline_forecast'); // Additional metadata
+        formData.append('timestamp', new Date().toISOString());
+
         setPdfLoadingState(true);
+
         try {
+            console.log('Sending to webhook:', PDF_WEBHOOK_URL);
+            
             const response = await fetch(PDF_WEBHOOK_URL, {
                 method: 'POST',
                 body: formData
+                // ✅ DO NOT set Content-Type header - browser will set it automatically with boundary
             });
-            if (!response.ok) throw new Error(`Upload failed: ${response.status}`);
-            await response.json(); 
-            setPdfLoadingState(false, 'PDF analysis started! You will receive the report via email in 5-10 minutes.', true);
-            pdfUploadForm.reset(); 
+
+            console.log('Response status:', response.status);
+            
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('Error response:', errorText);
+                throw new Error(`Upload failed with status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            console.log('Upload successful:', result);
+            
+            pdfSuccessMessage.innerHTML = '✅ <strong>PDF analysis started successfully!</strong><br/>' +
+                'You will receive the detailed report via email in 5-10 minutes.';
+            pdfSuccessMessage.classList.remove('hidden');
+            pdfUploadForm.reset();
+
         } catch (error) {
             console.error('Error uploading PDF:', error);
-            setPdfLoadingState(false, `Upload failed: ${error.message}. Please try again.`, false);
+            pdfErrorMessage.innerHTML = '❌ <strong>Upload failed:</strong> ' + error.message + '<br/>Please try again.';
+            pdfErrorMessage.classList.remove('hidden');
+        } finally {
+            setPdfLoadingState(false);
         }
     }
 
-    /**
-     * Toggles the UI state for the PDF upload button.
-     */
-    function setPdfLoadingState(isLoading, message = '', isSuccess = true) {
+    function setPdfLoadingState(isLoading) {
         if (!pdfUploadButton) return;
-
         pdfUploadButton.disabled = isLoading;
-        
-        // ✅ Hide ALL message containers
-        simpleSuccessMessage.classList.add('hidden');
-        simpleErrorMessage.classList.add('hidden');
-        pdfSuccessMessage.classList.add('hidden');
-        pdfErrorMessage.classList.add('hidden');
-        if (formSuccessMessage) formSuccessMessage.classList.add('hidden');
-        if (formErrorMessage) formErrorMessage.classList.add('hidden');
 
         if (isLoading) {
             pdfButtonIcon.classList.add('hidden');
@@ -390,42 +412,25 @@
             pdfButtonIcon.classList.remove('hidden');
             pdfSpinner.classList.add('hidden');
             pdfButtonText.textContent = 'Upload & Analyze';
-
-            if (message) {
-                if (isSuccess) {
-                    pdfSuccessMessage.textContent = message;
-                    pdfSuccessMessage.classList.remove('hidden');
-                } else {
-                    pdfErrorMessage.textContent = message;
-                    pdfErrorMessage.classList.remove('hidden');
-                }
-            }
         }
     }
 
-
-    // --- DETAILED FORM (SECOND BUTTON) ---
+    // --- DETAILED FORM ---
     document.getElementById('startDate').min = new Date().toISOString().split('T')[0];
 
-    /**
-     * ✅ JAVASCRIPT CORRECTED
-     * This function now writes ONLY to the 'form-success-message'
-     * and 'form-error-message' elements.
-     */
     document.getElementById('projectForm').addEventListener('submit', async function(e) {
         e.preventDefault();
-        
+        hideAllMessages();
+
         const detailedSubmitButton = e.target.querySelector('button[type="submit"]');
         const originalButtonHTML = detailedSubmitButton.innerHTML;
-        
-        // --- Validation ---
+
         if (skillsSet.size === 0) {
             showError('Please add at least one required skill.');
             document.getElementById('skillsInput').focus();
             return;
         }
 
-        // --- Collect Form Data ---
         const formData = {
             project_name: document.getElementById('projectName').value,
             project_type: document.getElementById('projectType').value,
@@ -436,27 +441,16 @@
             trigger: 'detailed_forecast_v1'
         };
 
-        // 1. --- Set Loading State ---
         detailedSubmitButton.disabled = true;
         detailedSubmitButton.innerHTML = `
             <svg class="w-5 h-5 spinner" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            <span id="simple-button-text">Analysis in Progress...</span>
+            <span>Analysis in Progress...</span>
         `;
-        
-        // ✅ Hide ALL message containers
-        document.getElementById('errorMessage').style.display = 'none'; // Validation
-        simpleSuccessMessage.classList.add('hidden');
-        simpleErrorMessage.classList.add('hidden');
-        pdfSuccessMessage.classList.add('hidden');
-        pdfErrorMessage.classList.add('hidden');
-        formSuccessMessage.classList.add('hidden');
-        formErrorMessage.classList.add('hidden');
 
         try {
-            // 2. --- Call Webhook ---
             const response = await fetch(DETAILED_FORM_WEBHOOK_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -467,72 +461,33 @@
                 throw new Error(`Webhook request failed with status: ${response.status}`);
             }
 
-            // 3. --- SUCCESS ---
-            // ✅ Write to the correct, dedicated message element
-            formSuccessMessage.innerHTML = 'Detailed analysis started! You will receive the report with:<br/>' +
-                '<span class="font-semibold text-indigo-300">Your Custom Pipeline Forecast & Recommendations</span>' +
-                '<br/>via email in 5-10 minutes.';
+            formSuccessMessage.innerHTML = '✅ <strong>Detailed analysis started successfully!</strong><br/>' +
+                'You will receive the report with <span class="font-semibold">Custom Pipeline Forecast & Recommendations</span> via email in 5-10 minutes.';
             formSuccessMessage.classList.remove('hidden');
             
             document.getElementById('projectForm').reset();
             skillsSet.clear();
             document.getElementById('skillsContainer').innerHTML = '';
             
-            // Scroll the message into view
             formSuccessMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
         } catch (error) {
-            // 4. --- ERROR ---
             console.error('Error triggering detailed webhook:', error);
-            
-            // ✅ Write to the correct, dedicated message element
-            formErrorMessage.textContent = `Detailed analysis failed: ${error.message}. Please try again.`;
+            formErrorMessage.innerHTML = '❌ <strong>Detailed analysis failed:</strong> ' + error.message + '<br/>Please try again.';
             formErrorMessage.classList.remove('hidden');
-            
-            // Scroll the message into view
             formErrorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
         
         } finally {
-            // 5. --- ALWAYS ---
             detailedSubmitButton.disabled = false;
             detailedSubmitButton.innerHTML = originalButtonHTML;
         }
     });
 
-
-    // --- UTILITY & ANIMATION FUNCTIONS ---
-
+    // --- UTILITY FUNCTIONS ---
     function showError(message) {
         const errorDiv = document.getElementById('errorMessage');
         errorDiv.textContent = message;
         errorDiv.style.display = 'block';
-    }
-
-    function resetForm() {
-        document.getElementById('projectForm').reset();
-        skillsSet.clear();
-        document.getElementById('skillsContainer').innerHTML = '';
-        
-        document.getElementById('resultContainer').style.display = 'none';
-        document.getElementById('loadingContainer').style.display = 'none';
-        document.getElementById('formContainer').style.display = 'block';
-        document.getElementById('errorMessage').style.display = 'none';
-        
-        // ✅ Clear ALL message containers
-        simpleSuccessMessage.classList.add('hidden');
-        simpleErrorMessage.classList.add('hidden');
-        pdfSuccessMessage.classList.add('hidden');
-        pdfErrorMessage.classList.add('hidden');
-        if (formSuccessMessage) formSuccessMessage.classList.add('hidden');
-        if (formErrorMessage) formErrorMessage.classList.add('hidden');
-        
-        // Reset loading steps visual
-        ['step1', 'step2', 'step3', 'step4', 'step5'].forEach(step => {
-            const el = document.getElementById(step);
-            if (el) el.classList.remove('scale-105', 'border', 'border-indigo-700', 'bg-indigo-900/50', '!text-white', '!text-green-300', 'opacity-70');
-        });
-        
-        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     // --- SKILLS TAG SCRIPT ---
@@ -649,7 +604,7 @@
                 let size = (Math.random() * 1.5) + 1;
                 let x = Math.random() * canvas.width;
                 let y = Math.random() * canvas.height;
-                let color = 'rgba(165, 180, 252, 0.5)'; // indigo-300 with opacity
+                let color = 'rgba(165, 180, 252, 0.5)';
                 particlesArray.push(new Particle(x, y, size, color));
             }
         }
