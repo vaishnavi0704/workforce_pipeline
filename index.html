@@ -370,6 +370,12 @@
     /**
      * Handles the submit event for the "Generate AI-Powered" (detailed) form.
      */
+/**
+     * Handles the submit event for the "Generate AI-Powered" (detailed) form.
+     * --- MODIFIED as per your request ---
+     * This now triggers the webhook and shows an email-sent confirmation,
+     * similar to the "Quick Analysis" button.
+     */
     document.getElementById('projectForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         
@@ -389,56 +395,65 @@
             trigger: 'detailed_forecast_v1'
         };
 
-        // Show loading screen
+        // 1. Show loading screen & clear old messages
         document.getElementById('formContainer').style.display = 'none';
         document.getElementById('loadingContainer').style.display = 'block';
-        document.getElementById('errorMessage').style.display = 'none';
+        document.getElementById('errorMessage').style.display = 'none'; // Clear validation errors
+        simpleSuccessMessage.classList.add('hidden'); // Clear old success
+        simpleErrorMessage.classList.add('hidden');   // Clear old errors
         
         const loadingInterval = animateLoadingSteps();
 
         try {
+            // 2. Call the correct detailed webhook
             const response = await fetch(DETAILED_FORM_WEBHOOK_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             });
 
+            // 3. Stop loading UI
             clearInterval(loadingInterval);
             document.getElementById('loadingContainer').style.display = 'none';
+            document.getElementById('formContainer').style.display = 'block'; // Show form again
 
             if (!response.ok) {
-                    throw new Error(`Webhook request failed with status: ${response.status}`);
-                }
-
-                // 3. Show Success Message
-                simpleSuccessMessage.innerHTML = 'Analysis started! You will receive the report with:<br/>' +
-                    '<span class="font-semibold text-indigo-300">Pipeline Forecast, Attrition Risk & Hiring Market Trends</span>' +
-                    '<br/>via email in 5-10 minutes. Feel free to keep this page open.';
-                simpleSuccessMessage.classList.remove('hidden');
-                
-                simpleButtonText.textContent = 'Analysis Started';
-
-            } catch (error) {
-                // 4. Show Error Message
-                console.error('Error triggering simple webhook:', error);
-                simpleErrorMessage.textContent = 'Failed to start analysis. Please try again or contact support.';
-                simpleErrorMessage.classList.remove('hidden');
-                
-                setSimpleLoadingState(false); 
-                simpleButtonText.textContent = 'Start Quick Analysis';
-
-            } finally {
-                // 5. Hide spinner
-                if (!simpleErrorMessage.classList.contains('hidden')) {
-                   // Error already handled
-                } else {
-                    simpleSpinner.classList.add('hidden');
-                    if(simpleButtonIcon) simpleButtonIcon.classList.remove('hidden'); 
-                }
+                throw new Error(`Webhook request failed with status: ${response.status}`);
             }
-        }
-    );
 
+            // 4. --- SUCCESS ---
+            // Show the "email" message using the *exact same* element as the quick analysis
+            simpleSuccessMessage.innerHTML = 'Detailed analysis started! You will receive the report with:<br/>' +
+                '<span class="font-semibold text-indigo-300">Your Custom Pipeline Forecast & Recommendations</span>' +
+                '<br/>via email in 5-10 minutes.';
+            simpleSuccessMessage.classList.remove('hidden');
+            
+            // Reset the form for the next entry
+            document.getElementById('projectForm').reset();
+            skillsSet.clear();
+            document.getElementById('skillsContainer').innerHTML = '';
+            
+            // Scroll to the top to see the success message
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+
+        } catch (error) {
+            // 5. --- ERROR ---
+            console.error('Error triggering detailed webhook:', error);
+            
+            // Stop loading UI
+            clearInterval(loadingInterval);
+            document.getElementById('loadingContainer').style.display = 'none';
+            document.getElementById('formContainer').style.display = 'block'; // Show form again
+
+            // Show the error message using the *exact same* element as the quick analysis
+            simpleErrorMessage.textContent = `Detailed analysis failed: ${error.message}. Please try again.`;
+            simpleErrorMessage.classList.remove('hidden');
+
+            // Scroll to the top to see the error message
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
 
     // --- UTILITY & ANIMATION FUNCTIONS ---
 
