@@ -330,10 +330,9 @@
     // ======================================================
 
     // ✅ CORRECTED WEBHOOK URLS - Using PRODUCTION URLs
-    const QUICK_ANALYSIS_WEBHOOK_URL = 'https://n8n.solutionspace.in/webhook/c599ba9f-2b93-4cff-85bb-ce3ff1ef8150';
-    const DETAILED_FORM_WEBHOOK_URL = 'https://n8n.solutionspace.in/webhook/14d07caa-9a4e-4226-96aa-b12623c618bf';
-    const PDF_WEBHOOK_URL = 'https://n8n.solutionspace.in/webhook/f6f20cd2-c28c-499e-92d2-290cef4fdefd';
-
+    const QUICK_ANALYSIS_WEBHOOK_URL = '/api/quick-analysis';
+    const DETAILED_FORM_WEBHOOK_URL = '/api/detailed-form';
+    const PDF_WEBHOOK_URL = '/api/upload-pdf';
     // --- Get all message elements ---
     const simpleSuccessMessage = document.getElementById('simple-success-message');
     const simpleErrorMessage = document.getElementById('simple-error-message');
