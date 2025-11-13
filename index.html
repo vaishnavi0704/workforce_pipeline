@@ -7,10 +7,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Use the Inter font, which is clean and professional */
+        html, body {
+            height: 100%; /* Ensure html and body are full height */
+            overflow: hidden; /* Prevent body-level scrolling */
+        }
         body {
             font-family: 'Inter', sans-serif;
-            /* Prevent scrolling caused by canvas */
-            overflow-x: hidden;
         }
         /* Simple spinner animation */
         @keyframes spin {
@@ -22,11 +24,11 @@
             animation: spin 1s linear infinite;
         }
         
-        /* --- Styles for the skills input --- */
+        /* --- Styles for the skills input (Updated to Blue) --- */
         .skill-tag {
             display: inline-flex;
             align-items: center;
-            background-color: #4f46e5; /* indigo-600 */
+            background-color: #2563eb; /* blue-600 */
             color: white;
             padding: 4px 8px 4px 12px;
             border-radius: 9999px; /* rounded-full */
@@ -36,7 +38,7 @@
         }
         .skill-tag button {
             margin-left: 8px;
-            background-color: #3730a3; /* indigo-800 */
+            background-color: #1e40af; /* blue-800 */
             border-radius: 50%;
             width: 20px;
             height: 20px;
@@ -46,210 +48,282 @@
             transition: background-color 0.2s;
         }
         .skill-tag button:hover {
-            background-color: #c7d2fe; /* indigo-200 */
-            color: #3730a3; /* indigo-800 */
+            background-color: #bfdbfe; /* blue-200 */
+            color: #1e40af; /* blue-800 */
         }
         /* --- End skills styles --- */
     </style>
 </head>
-<body class="bg-gray-900 text-gray-100 flex items-center justify-center min-h-screen p-4 py-12">
+<body class="bg-white text-gray-900">
 
-    <canvas id="interactive-bg" class="fixed top-0 left-0 w-full h-full z-0"></canvas>
-
-    <div class="bg-gray-800 rounded-xl shadow-2xl max-w-4xl w-full relative z-10 overflow-hidden">
+    
+<div class="bg-white w-screen h-screen relative z-10 overflow-hidden flex flex-col">
         
-        <div class="bg-gray-900/50 p-8 text-center border-b border-gray-700">
-            <h1 class="text-3xl font-bold mb-2 text-white flex items-center justify-center gap-3">
-                <svg class="w-8 h-8 text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <div class="bg-blue-50 p-8 text-center border-b border-gray-200 flex-shrink-0">
+            <h1 class="text-3xl font-bold mb-2 text-gray-900 flex items-center justify-center gap-3">
+                <svg class="w-8 h-8 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
                 </svg>
                 Dynamic Workforce Planning Agent
             </h1>
-            <p class="text-lg text-indigo-300 mb-6">AI-Powered Predictive Staffing and Market Analysis</p>
+            <p class="text-lg text-blue-600 mb-6">AI-Powered Predictive Staffing and Market Analysis</p>
             
             <div class="flex flex-wrap justify-center gap-3 text-sm">
-                <div class="bg-gray-700 rounded-full py-2 px-4 flex items-center gap-2 text-gray-300">
-                    <svg class="w-4 h-4 text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h12M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-12a2.25 2.25 0 0 1-2.25-2.25V3m12.75 0v6.75a2.25 2.25 0 0 1-2.25 2.25H9m3.75 0v-6.75a2.25 2.25 0 0 0-2.25-2.25H9" /></svg>
+                <div class="bg-blue-100 rounded-full py-2 px-4 flex items-center gap-2 text-blue-800">
+                    <svg class="w-4 h-4 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h12M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-12a2.25 2.25 0 0 1-2.25-2.25V3m12.75 0v6.75a2.25 2.25 0 0 1-2.25 2.25H9m3.75 0v-6.75a2.25 2.25 0 0 0-2.25-2.25H9" /></svg>
                     <span>Pipeline Forecasting</span>
                 </div>
-                <div class="bg-gray-700 rounded-full py-2 px-4 flex items-center gap-2 text-gray-300">
+                <div class="bg-blue-100 rounded-full py-2 px-4 flex items-center gap-2 text-blue-800">
                     <svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" /></svg>
                     <span>Attrition Prediction</span>
                 </div>
-                <div class="bg-gray-700 rounded-full py-2 px-4 flex items-center gap-2 text-gray-300">
+                <div class="bg-blue-100 rounded-full py-2 px-4 flex items-center gap-2 text-blue-800">
                     <svg class="w-4 h-4 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" /></svg>
                     <span>Market Trends</span>
                 </div>
-                <div class="bg-gray-700 rounded-full py-2 px-4 flex items-center gap-2 text-gray-300">
+                <div class="bg-blue-100 rounded-full py-2 px-4 flex items-center gap-2 text-blue-800">
                     <svg class="w-4 h-4 text-purple-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" /></svg>
                     <span>AI Recommendations</span>
                 </div>
             </div>
         </div>
 
-        <div class="p-8" id="formContainer">
-
-            <!-- QUICK ANALYSIS SECTION -->
-            <div class="bg-gray-700/50 p-6 rounded-lg border border-gray-600 mb-6 text-center">
-                <h2 class="text-2xl font-bold mb-3 text-white">Quick Analysis Report</h2>
-                <p class="text-gray-400 mb-6 max-w-xl mx-auto">
-                    Click the button to get the complete report on the workforce based on the project pipelines, attrition risk, hiring trends, recommending proactive hiring or upskilling.
-                </p>
-                <button id="simple-analysis-button" class="w-full sm:w-auto bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg flex items-center justify-center space-x-3 transition-all duration-300 ease-in-out hover:bg-indigo-700 disabled:bg-gray-500 disabled:cursor-not-allowed mx-auto">
-                    <svg id="simple-button-icon" class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-                    </svg>
-                    <svg id="simple-spinner" class="w-5 h-5 spinner hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <span id="simple-button-text">Start Quick Analysis</span>
-                </button>
-                
-                <!-- DEDICATED MESSAGE CONTAINER FOR QUICK ANALYSIS -->
-                <div id="simple-message-container" class="mt-6">
-                    <div id="simple-success-message" class="hidden bg-green-900/50 text-green-300 p-4 rounded-lg border border-green-700"></div>
-                    <div id="simple-error-message" class="hidden bg-red-900/50 text-red-300 p-4 rounded-lg border border-red-700"></div>
-                </div>
-            </div>
-                
-            <hr class="border-t border-gray-600 my-8">
-            
-            <!-- PDF UPLOAD SECTION -->
-            <div class="bg-gray-700/50 p-6 rounded-lg border border-gray-600 mb-6">
-                <h2 class="text-xl font-semibold text-gray-300 mb-4">Upload a Project PDF for Analysis</h2>
-                <form id="pdfUploadForm" class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    <div class="flex-grow">
-                        <label for="pdfFile" class="sr-only">Upload PDF</label>
-                        <input type="file" id="pdfFile" accept=".pdf" required class="w-full text-sm text-gray-300
-                            file:mr-4 file:py-2 file:px-4
-                            file:rounded-full file:border-0
-                            file:text-sm file:font-semibold
-                            file:bg-indigo-600 file:text-white
-                            hover:file:bg-indigo-700
-                            file:transition-colors file:cursor-pointer">
-                    </div>
-                    <button type="submit" id="pdfUploadButton" class="w-full sm:w-auto bg-green-600 text-white font-bold py-2 px-5 rounded-lg shadow-lg flex items-center justify-center space-x-2 transition-all duration-300 ease-in-out hover:bg-green-700 disabled:bg-gray-500">
-                        <svg id="pdf-button-icon" class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                        </svg>
-                        <svg id="pdf-spinner" class="w-5 h-5 spinner hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        <span id="pdf-button-text">Upload & Analyze</span>
+        <div id="formContainer" class="flex-grow flex flex-col min-h-0">
+            <div class="border-b border-gray-200 bg-gray-50/70 flex-shrink-0">
+                <nav class="flex -mb-px px-6 sm:px-8" aria-label="Tabs">
+                    <button id="tab-quick" class="tab-button flex items-center gap-2 whitespace-nowrap border-b-2 py-4 px-5 text-sm font-medium transition-colors text-blue-600 border-blue-600" data-target="panel-quick">
+                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+                        <span>Quick Analysis</span>
                     </button>
-                </form>
-                
-                <!-- DEDICATED MESSAGE CONTAINER FOR PDF UPLOAD -->
-                <div id="pdf-message-container" class="mt-4">
-                    <div id="pdf-success-message" class="hidden bg-green-900/50 text-green-300 p-4 rounded-lg border border-green-700"></div>
-                    <div id="pdf-error-message" class="hidden bg-red-900/50 text-red-300 p-4 rounded-lg border border-red-700"></div>
-                </div>
+                    <button id="tab-new-project" class="tab-button flex items-center gap-2 whitespace-nowrap border-b-2 border-transparent py-4 px-5 text-sm font-medium text-gray-600 hover:text-gray-900 hover:border-gray-300 transition-colors" data-target="panel-new-project">
+                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+                        <span>New Project Analysis</span>
+                    </button>
+                </nav>
             </div>
-            
-            <hr class="border-t border-gray-600 my-8">
-            
-            <!-- DETAILED FORM SECTION -->
-            <div class="bg-gray-700/50 p-6 rounded-lg border border-gray-600">
-                <h2 class="text-xl font-semibold text-gray-300 mb-4">Fill Out the Form for Detailed Project Pipeline Forecast</h2>
-            
-                <div class="bg-indigo-900/50 text-indigo-200 p-4 rounded-lg border border-indigo-700 mb-6 flex gap-3 items-start">
-                    <svg class="w-6 h-6 text-indigo-300 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
-                    </svg>
-                    <p><strong>Predictive Analysis:</strong> This agent analyzes your project pipeline, historical attrition patterns, and current hiring market trends to provide proactive workforce recommendations.</p>
+
+            <div id="tab-panels" class="p-6 sm:p-8 flex-grow overflow-y-auto">
+
+                <div id="panel-quick" class="tab-panel">
+                    <div class="text-center max-w-xl mx-auto">
+                        <h2 class="text-2xl font-bold mb-3 text-gray-900">Quick Analysis Report</h2>
+                        <p class="text-gray-600 mb-6">
+                            Click the button to get the complete report on the workforce based on the project pipelines, attrition risk, hiring trends, recommending proactive hiring or upskilling.
+                        </p>
+                        <button id="simple-analysis-button" class="w-full sm:w-auto bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg flex items-center justify-center space-x-3 transition-all duration-300 ease-in-out hover:bg-blue-700 disabled:bg-gray-500 disabled:cursor-not-allowed mx-auto">
+                            <svg id="simple-button-icon" class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                            </svg>
+                            <svg id="simple-spinner" class="w-5 h-5 spinner hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            <span id="simple-button-text">Start Quick Analysis</span>
+                        </button>
+                        
+                        <div id="simple-message-container" class="mt-6">
+                            <div id="simple-success-message" class="hidden bg-green-50 text-green-700 p-4 rounded-lg border border-green-300"></div>
+                            <div id="simple-error-message" class="hidden bg-red-50 text-red-700 p-4 rounded-lg border border-red-300"></div>
+                        </div>
+                    </div>
                 </div>
-
-                <form id="projectForm" class="grid grid-cols-1 md:grid-cols-2 gap-x-6">
-                    <div>
-                        <div class="mb-6">
-                            <label for="projectName" class="block mb-2 text-sm font-medium text-gray-300">Project Name *</label>
-                            <input type="text" id="projectName" required placeholder="e.g., AI Chatbot Development" class="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-3">
-                        </div>
-
-                        <div class="mb-6">
-                            <label for="projectType" class="block mb-2 text-sm font-medium text-gray-300">Project Type *</label>
-                            <select id="projectType" required class="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-3">
-                                <option value="">Select project type</option>
-                                <option value="Software Development">Software Development</option>
-                                <option value="Consulting">Consulting</option>
-                                <option value="Data Analytics">Data Analytics</option>
-                                <option value="Infrastructure">Infrastructure</option>
-                                <option value="Marketing Campaign">Marketing Campaign</option>
-                                <option value="Digital Transformation">Digital Transformation</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-6">
-                            <label for="skillsInput" class="block mb-2 text-sm font-medium text-gray-300">
-                                Required Skills * <span class="text-xs text-gray-400">(Type a skill and press Enter or Comma)</span>
-                            </label>
-                            <div class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus-within:ring-indigo-500 focus-within:border-indigo-500 p-3 flex flex-wrap items-center">
-                                <div id="skillsContainer" class="flex flex-wrap">
+                
+                <div id="panel-new-project" class="tab-panel hidden">
+                    
+                    <div class="flex flex-col items-center gap-8 max-w-2xl mx-auto">
+                        
+                        <div class="w-full p-6 border border-gray-200 rounded-lg shadow-sm">
+                            <h2 class="text-xl font-semibold text-gray-800 mb-4">Option 1: Upload a Project PDF</h2>
+                            <form id="pdfUploadForm" class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                                <div class="flex-grow">
+                                    <label for="pdfFile" class="sr-only">Upload PDF</label>
+                                    <input type="file" id="pdfFile" accept=".pdf" required class="w-full text-sm text-gray-700
+                                        file:mr-4 file:py-2 file:px-4
+                                        file:rounded-full file:border-0
+                                        file:text-sm file:font-semibold
+                                        file:bg-blue-600 file:text-white
+                                        hover:file:bg-blue-700
+                                        file:transition-colors file:cursor-pointer">
                                 </div>
-                                <input type="text" id="skillsInput" placeholder="e.g., Python, React, AWS..." class="bg-transparent flex-1 focus:outline-none min-w-[150px] p-1">
+                                <button type="submit" id="pdfUploadButton" class="w-full sm:w-auto bg-green-600 text-white font-bold py-2 px-5 rounded-lg shadow-lg flex items-center justify-center space-x-2 transition-all duration-300 ease-in-out hover:bg-green-700 disabled:bg-gray-500">
+                                    <svg id="pdf-button-icon" class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                                    </svg>
+                                    <svg id="pdf-spinner" class="w-5 h-5 spinner hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    <span id="pdf-button-text">Upload & Analyze</span>
+                                </button>
+                            </form>
+                            <div id="pdf-message-container" class="mt-4">
+                                <div id="pdf-success-message" class="hidden bg-green-50 text-green-700 p-4 rounded-lg border border-green-300"></div>
+                                <div id="pdf-error-message" class="hidden bg-red-50 text-red-700 p-4 rounded-lg border border-red-300"></div>
                             </div>
                         </div>
-                    </div>
 
-                    <div>
-                        <div class="mb-6">
-                            <label for="complexity" class="block mb-2 text-sm font-medium text-gray-300">Project Complexity *</label>
-                            <select id="complexity" required class="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-3">
-                                <option value="">Select complexity</option>
-                                <option value="Low">Low - Standard implementation</option>
-                                <option value="Medium">Medium - Moderate challenges</option>
-                                <option value="High">High - Complex requirements</option>
-                                <option value="Critical">Critical - Mission critical system</option>
+                        <div class="relative flex py-2 items-center w-full">
+                            <div class="flex-grow border-t border-gray-300"></div>
+                            <span class="flex-shrink mx-4 text-gray-500 font-semibold text-lg">OR</span>
+                            <div class="flex-grow border-t border-gray-300"></div>
+                        </div>
+
+                        <div class="w-full p-6 border border-gray-200 rounded-lg shadow-sm">
+                            <label for="option2-toggle" class="block text-xl font-semibold text-gray-800 mb-4">Option 2: Fill Detailed Form</label>
+                            <select id="option2-toggle" class="w-full max-w-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-3">
+                                <option value="hide">Hide Detailed Form</option>
+                                <option value="show">Show Detailed Form</option>
                             </select>
                         </div>
-
-                        <div class="mb-6">
-                            <label for="startDate" class="block mb-2 text-sm font-medium text-gray-300">Expected Start Date *</label>
-                            <input type="date" id="startDate" required class="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-3" placeholder="dd/mm/yyyy">
+                    </div>
+            
+                    <div id="detailed-form-container" class="hidden max-w-4xl mx-auto mt-8">
+                        <div class="bg-blue-50 text-blue-700 p-4 rounded-lg border border-blue-300 mb-6 flex gap-3 items-start">
+                            <svg class="w-6 h-6 text-blue-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                            </svg>
+                            <p><strong>Predictive Analysis:</strong> This agent analyzes your project pipeline, historical attrition patterns, and current hiring market trends to provide proactive workforce recommendations.</p>
                         </div>
 
-                        <div class="mb-6">
-                            <label for="duration" class="block mb-2 text-sm font-medium text-gray-300">Project Duration (months) *</label>
-                            <input type="number" id="duration" required min="1" max="36" placeholder="e.g., 8" class="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-3">
-                        </div>
+                        <form id="projectForm" class="grid grid-cols-1 md:grid-cols-2 gap-x-6">
+                            <div>
+                                <div class="mb-6">
+                                    <label for="projectName" class="block mb-2 text-sm font-medium text-gray-700">Project Name *</label>
+                                    <input type="text" id="projectName" required placeholder="e.g., AI Chatbot Development" class="w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-3">
+                                </div>
+                                <div class="mb-6">
+                                    <label for="projectType" class="block mb-2 text-sm font-medium text-gray-700">Project Type *</label>
+                                    <select id="projectType" required class="w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-3">
+                                        <option value="">Select project type</option>
+                                        <option value="Software Development">Software Development</option>
+                                        <option value="Consulting">Consulting</option>
+                                        <option value="Data Analytics">Data Analytics</option>
+                                        <option value="Infrastructure">Infrastructure</option>
+                                        <option value="Marketing Campaign">Marketing Campaign</option>
+                                        <option value="Digital Transformation">Digital Transformation</option>
+                                    </select>
+                                </div>
+                                <div class="mb-6">
+                                    <label for="skillsInput" class="block mb-2 text-sm font-medium text-gray-700">
+                                        Required Skills * <span class="text-xs text-gray-500">(Type a skill and press Enter or Comma)</span>
+                                    </label>
+                                    <div class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus-within:ring-blue-500 focus-within:border-blue-500 p-3 flex flex-wrap items-center">
+                                        <div id="skillsContainer" class="flex flex-wrap">
+                                        </div>
+                                        <input type="text" id="skillsInput" placeholder="e.g., Python, React, AWS..." class="bg-transparent flex-1 focus:outline-none min-w-[150px] p-1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mb-6">
+                                    <label for="complexity" class="block mb-2 text-sm font-medium text-gray-700">Project Complexity *</label>
+                                    <select id="complexity" required class="w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-3">
+                                        <option value="">Select complexity</option>
+                                        <option value="Low">Low - Standard implementation</option>
+                                        <option value="Medium">Medium - Moderate challenges</option>
+                                        <option value="High">High - Complex requirements</option>
+                                        <option value="Critical">Critical - Mission critical system</option>
+                                    </select>
+                                </div>
+                                <div class="mb-6">
+                                    <label for="startDate" class="block mb-2 text-sm font-medium text-gray-700">Expected Start Date *</label>
+                                    <input type="date" id="startDate" required class="w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-3" placeholder="dd/mm/yyyy">
+                                </div>
+                                <div class="mb-6">
+                                    <label for="duration" class="block mb-2 text-sm font-medium text-gray-700">Project Duration (months) *</label>
+                                    <input type="number" id="duration" required min="1" max="36" placeholder="e.g., 8" class="w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-3">
+                                </div>
+                            </div>
+                            <div class="md:col-span-2">
+                                <div class="hidden bg-red-50 text-red-700 p-4 rounded-lg border border-red-300 my-4" id="errorMessage"></div>
+                            </div>
+                            <div class="md:col-span-2 mb-4">
+                                <div id="form-success-message" class="hidden bg-green-50 text-green-700 p-4 rounded-lg border border-green-300"></div>
+                                <div id="form-error-message" class="hidden bg-red-50 text-red-700 p-4 rounded-lg border border-red-300"></div>
+                            </div>
+                            <button type="submit" class="md:col-span-2 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-lg shadow-lg flex items-center justify-center gap-3 transition-all duration-300 ease-in-out disabled:bg-gray-500">
+                                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v.01a6 6 0 0 1-5.84-7.38C3.91 10.12 7.15 6.45 12 6.45c4.85 0 8.09 3.67 8.09 7.92v.01Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 12H9.75M12 12H9.75M12 12V9.75M12 12V9.75M12 12h2.25M12 12h2.25M12 12v2.25M12 12v2.25M15 12C15 11.2 14.4 10.5 13.5 10.5C12.6 10.5 12 11.2 12 12C12 12.8 12.6 13.5 13.5 13.5C14.4 13.5 15 12.8 15 12Z" /></svg>
+                                Generate AI-Powered Workforce Forecast
+                            </button>
+                        </form>
                     </div>
-                    
-                    <div class="md:col-span-2">
-                        <div class="hidden bg-red-900/50 text-red-300 p-4 rounded-lg border border-red-700 my-4" id="errorMessage"></div>
-                    </div>
+                </div>
 
-                    <!-- DEDICATED MESSAGE CONTAINER FOR FORM SUBMISSION -->
-                    <div class="md:col-span-2 mb-4">
-                        <div id="form-success-message" class="hidden bg-green-900/50 text-green-300 p-4 rounded-lg border border-green-700"></div>
-                        <div id="form-error-message" class="hidden bg-red-900/50 text-red-300 p-4 rounded-lg border border-red-700"></div>
-                    </div>
-
-                    <button type="submit" class="md:col-span-2 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-6 rounded-lg shadow-lg flex items-center justify-center gap-3 transition-all duration-300 ease-in-out disabled:bg-gray-500">
-                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v.01a6 6 0 0 1-5.84-7.38C3.91 10.12 7.15 6.45 12 6.45c4.85 0 8.09 3.67 8.09 7.92v.01Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 12H9.75M12 12H9.75M12 12V9.75M12 12V9.75M12 12h2.25M12 12h2.25M12 12v2.25M12 12v2.25M15 12C15 11.2 14.4 10.5 13.5 10.5C12.6 10.5 12 11.2 12 12C12 12.8 12.6 13.5 13.5 13.5C14.4 13.5 15 12.8 15 12Z" /></svg>
-                        Generate AI-Powered Workforce Forecast
-                    </button>
-                </form>
             </div>
         </div>
 
-        <div class="hidden p-8 sm:p-12 text-center" id="loadingContainer">
-            <div class="spinner w-16 h-16 mx-auto border-4 border-gray-600 border-t-indigo-500 rounded-full"></div>
-            <h3 class="text-2xl font-bold mt-6 mb-2 text-white">AI Agent Analyzing Your Workforce Needs...</h3>
-            <p class="text-gray-400 mb-8">This may take 15-30 seconds</p>
+        <div class="hidden p-8 sm:p-12 text-center absolute inset-0 bg-white/80 backdrop-blur-sm z-20" id="loadingContainer">
+            <div class="flex flex-col items-center justify-center h-full">
+                <div class="spinner w-16 h-16 mx-auto border-4 border-gray-300 border-t-blue-500 rounded-full"></div>
+                <h3 class="text-2xl font-bold mt-6 mb-2 text-gray-900">AI Agent Analyzing Your Workforce Needs...</h3>
+                <p class="text-gray-500 mb-8">This may take 15-30 seconds</p>
+            </div>
         </div>
 
-        <div class="hidden p-4 sm:p-8 bg-gray-900" id="resultContainer">
-        </div>
+        <div class="hidden p-4 sm:p-8 bg-gray-50 absolute inset-0 z-20 overflow-y-auto" id="resultContainer">
+            </div>
     </div>
 
-    <script>
+<script>
+    // ======================================================
+    // == TAB SWITCHING SCRIPT ==
+    // ======================================================
+    const tabs = document.querySelectorAll('.tab-button');
+    const panels = document.querySelectorAll('.tab-panel');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const targetPanelId = tab.getAttribute('data-target');
+
+            // Update tab styles
+            tabs.forEach(t => {
+                if (t === tab) {
+                    // Activate clicked tab
+                    t.classList.add('text-blue-600', 'border-blue-600');
+                    t.classList.remove('text-gray-600', 'hover:text-gray-900', 'hover:border-gray-300', 'border-transparent');
+                } else {
+                    // Deactivate other tabs
+                    t.classList.remove('text-blue-600', 'border-blue-600');
+                    t.classList.add('text-gray-600', 'hover:text-gray-900', 'hover:border-gray-300', 'border-transparent');
+                }
+            });
+            
+            // Show/hide panels
+            panels.forEach(panel => {
+                if (panel.id === targetPanelId) {
+                    panel.classList.remove('hidden');
+                } else {
+                    panel.classList.add('hidden');
+                }
+            });
+        });
+    });
+
+    // ======================================================
+    // == SCRIPT FOR OPTION 2 TOGGLE ==
+    // ======================================================
+    const option2Toggle = document.getElementById('option2-toggle');
+    const detailedFormContainer = document.getElementById('detailed-form-container');
+
+    if (option2Toggle) {
+        option2Toggle.addEventListener('change', () => {
+            if (option2Toggle.value === 'show') {
+                detailedFormContainer.classList.remove('hidden');
+            } else {
+                detailedFormContainer.classList.add('hidden');
+            }
+        });
+    }
+
+    // ======================================================
+    // == ORIGINAL SCRIPT (with one addition) ==
+    // ======================================================
+
     // ✅ CORRECTED WEBHOOK URLS - Using PRODUCTION URLs
-    const QUICK_ANALYSIS_WEBHOOK_URL = 'https://n8n.solutionspace.in/webhook/c599ba9f-2b93-4cff-85bb-ce3ff1ef8150'; // Replace with your actual quick analysis webhook
+    const QUICK_ANALYSIS_WEBHOOK_URL = 'https://n8n.solutionspace.in/webhook/c599ba9f-2b93-4cff-85bb-ce3ff1ef8150';
     const DETAILED_FORM_WEBHOOK_URL = 'https://n8n.solutionspace.in/webhook/14d07caa-9a4e-4226-96aa-b12623c618bf';
-    const PDF_WEBHOOK_URL = 'https://n8n.solutionspace.in/webhook/f6f20cd2-c28c-499e-92d2-290cef4fdefd'; // ✅ CORRECTED - Now using production URL
+    const PDF_WEBHOOK_URL = 'https://n8n.solutionspace.in/webhook/f6f20cd2-c28c-499e-92d2-290cef4fdefd';
 
     // --- Get all message elements ---
     const simpleSuccessMessage = document.getElementById('simple-success-message');
@@ -267,7 +341,11 @@
         pdfErrorMessage.classList.add('hidden');
         formSuccessMessage.classList.add('hidden');
         formErrorMessage.classList.add('hidden');
-        document.getElementById('errorMessage').style.display = 'none';
+        
+        const detailedError = document.getElementById('errorMessage');
+        if (detailedError) {
+            detailedError.style.display = 'none';
+        }
     }
 
     // --- SIMPLE DASHBOARD (QUICK ANALYSIS BUTTON) ---
@@ -356,12 +434,11 @@
 
         const file = pdfFile.files[0];
         
-        // ✅ Log file details for debugging
         console.log('Uploading file:', file.name, 'Size:', file.size, 'Type:', file.type);
         
         const formData = new FormData();
         formData.append('file', file);
-        formData.append('uploadType', 'project_pipeline_forecast'); // Additional metadata
+        formData.append('uploadType', 'project_pipeline_forecast');
         formData.append('timestamp', new Date().toISOString());
 
         setPdfLoadingState(true);
@@ -372,7 +449,6 @@
             const response = await fetch(PDF_WEBHOOK_URL, {
                 method: 'POST',
                 body: formData
-                // ✅ DO NOT set Content-Type header - browser will set it automatically with boundary
             });
 
             console.log('Response status:', response.status);
@@ -469,6 +545,10 @@
             skillsSet.clear();
             document.getElementById('skillsContainer').innerHTML = '';
             
+            // == ADDITION: Hide form and reset dropdown on success ==
+            if(detailedFormContainer) detailedFormContainer.classList.add('hidden');
+            if(option2Toggle) option2Toggle.value = 'hide';
+            
             formSuccessMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
         } catch (error) {
@@ -527,109 +607,7 @@
         tag.appendChild(removeBtn);
         skillsContainer.appendChild(tag);
     }
-    
-    // --- INTERACTIVE CANVAS BACKGROUND SCRIPT ---
-    const canvas = document.getElementById('interactive-bg');
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-        let particlesArray = [];
-        let mouse = { x: null, y: null, radius: 100 };
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        window.addEventListener('mousemove', (event) => {
-            mouse.x = event.x;
-            mouse.y = event.y;
-        });
-        window.addEventListener('mouseout', () => {
-            mouse.x = null;
-            mouse.y = null;
-        });
-
-        class Particle {
-            constructor(x, y, size, color) {
-                this.x = x;
-                this.y = y;
-                this.size = size;
-                this.color = color;
-                this.baseX = this.x;
-                this.baseY = this.y;
-                this.density = (Math.random() * 30) + 1;
-            }
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.closePath();
-                ctx.fill();
-            }
-            update() {
-                let dx = mouse.x - this.x;
-                let dy = mouse.y - this.y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-                let forceDirectionX = dx / distance;
-                let forceDirectionY = dy / distance;
-                let maxDistance = mouse.radius;
-                let force = (maxDistance - distance) / maxDistance;
-                let directionX = 0;
-                let directionY = 0;
-
-                if (distance < mouse.radius && mouse.x !== null) {
-                    directionX = -forceDirectionX * force * this.density;
-                    directionY = -forceDirectionY * force * this.density;
-                } else {
-                    if (this.x !== this.baseX) {
-                        let dx_base = this.x - this.baseX;
-                        directionX = -dx_base / 20;
-                    }
-                    if (this.y !== this.baseY) {
-                        let dy_base = this.y - this.baseY;
-                        directionY = -dy_base / 20;
-                    }
-                }
-                this.x += directionX;
-                this.y += directionY;
-            }
-        }
-
-        function initParticles() {
-            particlesArray = [];
-            let numberOfParticles = (canvas.width * canvas.height) / 9000;
-            for (let i = 0; i < numberOfParticles; i++) {
-                let size = (Math.random() * 1.5) + 1;
-                let x = Math.random() * canvas.width;
-                let y = Math.random() * canvas.height;
-                let color = 'rgba(165, 180, 252, 0.5)';
-                particlesArray.push(new Particle(x, y, size, color));
-            }
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
-            }
-            requestAnimationFrame(animateParticles);
-        }
-
-        initParticles();
-        animateParticles();
-
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                resizeCanvas();
-                initParticles();
-            }, 100);
-        });
-    }
 </script>
 </body>
 </html>
