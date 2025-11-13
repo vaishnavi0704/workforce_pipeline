@@ -100,8 +100,7 @@
                         <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
                         <span>New Project Analysis</span>
                     </button>
-                    
-                </nav>
+                    </nav>
             </div>
 
             <div id="tab-panels" class="p-6 sm:p-8 flex-grow overflow-y-auto">
@@ -252,11 +251,7 @@
                     </div>
                 </div>
                 
-                <div id="panel-offboarding" class="tab-panel hidden h-full p-0">
-                    <iframe src="https://example.com" class="w-full h-full border-0" title="Offboarding Candidate"></iframe>
                 </div>
-
-            </div>
         </div>
 
         <div class="hidden p-8 sm:p-12 text-center absolute inset-0 bg-white/80 backdrop-blur-sm z-20" id="loadingContainer">
@@ -325,14 +320,16 @@
         });
     }
 
+
     // ======================================================
     // == ORIGINAL SCRIPT (with one update) ==
     // ======================================================
 
     // ✅ CORRECTED WEBHOOK URLS - Using PRODUCTION URLs
-    const QUICK_ANALYSIS_WEBHOOK_URL = '/api/quick-analysis';
-    const DETAILED_FORM_WEBHOOK_URL = '/api/detailed-form';
-    const PDF_WEBHOOK_URL = '/api/upload-pdf';
+    const QUICK_ANALYSIS_WEBHOOK_URL = 'https://n8n.solutionspace.in/webhook/c599ba9f-2b93-4cff-85bb-ce3ff1ef8150';
+    const DETAILED_FORM_WEBHOOK_URL = 'https://n8n.solutionspace.in/webhook/14d07caa-9a4e-4226-96aa-b12623c618bf';
+    const PDF_WEBHOOK_URL = 'https://n8n.solutionspace.in/webhook/f6f20cd2-c28c-499e-92d2-290cef4fdefd';
+
     // --- Get all message elements ---
     const simpleSuccessMessage = document.getElementById('simple-success-message');
     const simpleErrorMessage = document.getElementById('simple-error-message');
@@ -371,7 +368,7 @@
         setSimpleLoadingState(true);
 
         try {
-            const response = await fetch(QUICK_ANALISYS_WEBHOOK_URL, {
+            const response = await fetch(QUICK_ANALYSIS_WEBHOOK_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
