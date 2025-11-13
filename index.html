@@ -100,6 +100,7 @@
                         <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
                         <span>New Project Analysis</span>
                     </button>
+                    
                 </nav>
             </div>
 
@@ -131,6 +132,13 @@
                 
                 <div id="panel-new-project" class="tab-panel hidden">
                     
+                    <div class="bg-blue-50 text-blue-700 p-4 rounded-lg border border-blue-300 mb-8 flex gap-3 items-start max-w-4xl mx-auto">
+                        <svg class="w-6 h-6 text-blue-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                        </svg>
+                        <p><strong>Predictive Analysis:</strong> This agent analyzes your project pipeline, historical attrition patterns, and current hiring market trends to provide proactive workforce recommendations.</p>
+                    </div>
+
                     <div class="flex flex-col items-center gap-8 max-w-2xl mx-auto">
                         
                         <div class="w-full p-6 border border-gray-200 rounded-lg shadow-sm">
@@ -169,23 +177,17 @@
                             <div class="flex-grow border-t border-gray-300"></div>
                         </div>
 
-                        <div class="w-full p-6 border border-gray-200 rounded-lg shadow-sm">
-                            <label for="option2-toggle" class="block text-xl font-semibold text-gray-800 mb-4">Option 2: Fill Detailed Form</label>
-                            <select id="option2-toggle" class="w-full max-w-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-3">
-                                <option value="hide">Hide Detailed Form</option>
-                                <option value="show">Show Detailed Form</option>
-                            </select>
+                        <div class="w-full p-3 border border-gray-200 rounded-lg shadow-sm">
+                            <button id="option2-toggle-button" type="button" class="w-full flex items-center justify-between text-xl font-semibold text-gray-800 p-3 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                                <span>Option 2: Fill Detailed Form</span>
+                                <svg id="option2-arrow" class="w-5 h-5 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
             
                     <div id="detailed-form-container" class="hidden max-w-4xl mx-auto mt-8">
-                        <div class="bg-blue-50 text-blue-700 p-4 rounded-lg border border-blue-300 mb-6 flex gap-3 items-start">
-                            <svg class="w-6 h-6 text-blue-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
-                            </svg>
-                            <p><strong>Predictive Analysis:</strong> This agent analyzes your project pipeline, historical attrition patterns, and current hiring market trends to provide proactive workforce recommendations.</p>
-                        </div>
-
                         <form id="projectForm" class="grid grid-cols-1 md:grid-cols-2 gap-x-6">
                             <div>
                                 <div class="mb-6">
@@ -249,6 +251,10 @@
                         </form>
                     </div>
                 </div>
+                
+                <div id="panel-offboarding" class="tab-panel hidden h-full p-0">
+                    <iframe src="https://example.com" class="w-full h-full border-0" title="Offboarding Candidate"></iframe>
+                </div>
 
             </div>
         </div>
@@ -301,23 +307,26 @@
     });
 
     // ======================================================
-    // == SCRIPT FOR OPTION 2 TOGGLE ==
+    // == SCRIPT FOR OPTION 2 TOGGLE (UPDATED) ==
     // ======================================================
-    const option2Toggle = document.getElementById('option2-toggle');
+    const option2ToggleButton = document.getElementById('option2-toggle-button');
+    const option2Arrow = document.getElementById('option2-arrow');
     const detailedFormContainer = document.getElementById('detailed-form-container');
 
-    if (option2Toggle) {
-        option2Toggle.addEventListener('change', () => {
-            if (option2Toggle.value === 'show') {
-                detailedFormContainer.classList.remove('hidden');
+    if (option2ToggleButton) {
+        option2ToggleButton.addEventListener('click', () => {
+            const isHidden = detailedFormContainer.classList.toggle('hidden');
+            
+            if (isHidden) {
+                option2Arrow.classList.remove('rotate-180');
             } else {
-                detailedFormContainer.classList.add('hidden');
+                option2Arrow.classList.add('rotate-180');
             }
         });
     }
 
     // ======================================================
-    // == ORIGINAL SCRIPT (with one addition) ==
+    // == ORIGINAL SCRIPT (with one update) ==
     // ======================================================
 
     // ✅ CORRECTED WEBHOOK URLS - Using PRODUCTION URLs
@@ -363,7 +372,7 @@
         setSimpleLoadingState(true);
 
         try {
-            const response = await fetch(QUICK_ANALYSIS_WEBHOOK_URL, {
+            const response = await fetch(QUICK_ANALISYS_WEBHOOK_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
@@ -545,9 +554,9 @@
             skillsSet.clear();
             document.getElementById('skillsContainer').innerHTML = '';
             
-            // == ADDITION: Hide form and reset dropdown on success ==
+            // == UPDATED: Hide form and reset arrow on success ==
             if(detailedFormContainer) detailedFormContainer.classList.add('hidden');
-            if(option2Toggle) option2Toggle.value = 'hide';
+            if(option2Arrow) option2Arrow.classList.remove('rotate-180');
             
             formSuccessMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
