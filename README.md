@@ -44,8 +44,8 @@
   - DETAILED_FORM_WEBHOOK_URL
 
   Example (current values in the file):
-  - Quick: `https://n8n.solutionspace.in/webhook-test/c599ba9f-2b93-4cff-85bb-ce3ff1ef8150`
-  - Detailed: `https://n8n.solutionspace.in/webhook-test/14d07caa-9a4e-4226-96aa-b12623c618bf`
+  - Quick: `https://n8n.solutionspace.in/`
+  - Detailed: `https://n8n.solutionspace.in/`
 
 ---
 
